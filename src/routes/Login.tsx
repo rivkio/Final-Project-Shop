@@ -4,7 +4,7 @@ import { ILogin } from "../@types/@types";
 import { useAuth } from "../contexts/AuthContext";
 import dialogs from "../ui/dialogs";
 import patterns from "../validation/patterns";
-// import './CreateCard.scss';
+import './CreateCard.scss';
 
 
 const Login = () => {
@@ -20,7 +20,7 @@ const Login = () => {
                 });
             })
             .catch((e: any) => {
-                dialogs.error("Login Error", e.response.data.message);
+                dialogs.error("Login Error", e.response.data);
             });
     };
 
@@ -71,7 +71,7 @@ const Login = () => {
 
                 <div className="relative flex items-center mt-8">
                     <div className="border h-0 w-2/4 border-stone-300"></div>
-                    <div className=" text-stone-300 px-4 text-3xl font-normal">RO</div>
+                    <div className=" text-stone-300 px-4 text-1xl font-normal">RO</div>
                     <div className=" border h-0 w-2/4 border-stone-300"></div>
                 </div>
                 {/* <Link to="/register" type="submit"

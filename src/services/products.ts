@@ -1,5 +1,6 @@
 import axios from "axios";
-import { ProductData, UpdateProduct } from "../@types/@types";
+import { UpdateProduct } from "../@types/@types";
+import { ProductData } from "../@types/productData";
 
 const baseUrl = "http://localhost:8080/api/v1/products";
 
@@ -25,7 +26,7 @@ export const getProductById = (id: string) => axios.get(baseUrl + `/${id}`);
 //     });
 // }
 
-export const deleteCardById = (id: string) => {
+export const deleteProductById = (id: string) => {
     const url = `${baseUrl}/${id}`;
     return axios.delete(url, {
         headers: {

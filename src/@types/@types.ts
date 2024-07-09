@@ -20,26 +20,13 @@ export type IImage = {
     url: string;
 };
 
-
-
-// export type RegisterUser = {
-//     name: {
-//         first: string;
-//         middle?: string;
-//         last: string;
-//     };
-//     phone: string;
-//     email: string;
-//     password: string;
-//     address: {
-//         state?: string;
-//         country: string;
-//         city: string;
-//         street: string;
-//         houseNumber: number;
-//         zip?: string;
-//     };
-// };
+export type RegisterUser = {
+    name: IName;
+    phone: string;
+    email: string;
+    password: string;
+    address: IAddress;
+};
 
 export type IUserInput = {
     name: IName;
@@ -167,3 +154,6 @@ export interface AuthContextType {
     register: (form: IUser) => Promise<void>
     logout: () => void;
 }
+
+// טיפוס לפונקציה שמקבלת ילדים ומחזירה אלמנט של ראקט
+export type FCC = ({ children }: { children: ReactNode }) => ReactNode;

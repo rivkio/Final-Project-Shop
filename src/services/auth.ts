@@ -11,7 +11,12 @@ export const login = (data: ILogin) => axios.post(loginUrl, data);
 
 export const userDetails = (id: string) => {
     const url = `${usersUrl}/${id}`;
-    return axios.get(url);
+    return axios.get(url, {
+        headers: {
+            "x-auth-token": localStorage.getItem("token"),
+        },
+    
+    });
 };
 
 export const businessUser = (id: string) => {
