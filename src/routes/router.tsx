@@ -4,8 +4,8 @@ import Register from "./Register";
 import Products from "./products";
 import Login from "./Login";
 import { CarouselComponent } from "../components/Carousel ";
-// import ProtectedRoute from "../components/ProtectedRoute";
-// import Profile from "./Profile";
+import ProtectedRoute from "../components/ProtectedRoute";
+import Profile from "./Profile";
 
 
 
@@ -21,12 +21,12 @@ export const router = createBrowserRouter([
             { path: "/login", element: <Login />},
             { path: "/carousel", element: <CarouselComponent /> },
             {
-                // path: "/profile",
-                // element: (
-                //     <ProtectedRoute>
-                //         <Profile />
-                //     </ProtectedRoute>
-                // ),
+                path: "/profile",
+                element: (
+                    <ProtectedRoute>
+                        <Profile />
+                    </ProtectedRoute>
+                ),
             },
 
         ],

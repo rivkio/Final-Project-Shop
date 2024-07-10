@@ -3,6 +3,7 @@
 import { Avatar, DarkThemeToggle, Dropdown, Navbar } from "flowbite-react";
 
 export function Nav() {
+
     return (
         <Navbar fluid rounded>
             <Navbar.Brand href="https://flowbite-react.com">
@@ -30,6 +31,8 @@ export function Nav() {
                 <Navbar.Toggle />
                 <DarkThemeToggle className="ml-2" />
             </div>
+
+
             <Navbar.Collapse>
                 <Navbar.Link href="#" active>
                     Home
