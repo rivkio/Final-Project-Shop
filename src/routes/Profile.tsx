@@ -1,29 +1,17 @@
-import { useEffect, useState } from "react";
-import auth from "../services/auth";
-import { RegisterUser } from "../@types/@types";
+import React from 'react';
+import { useAuth } from '../hooks/useAuth';
 
+const Profile: React.FC = () => {
+    const { user } = useAuth();
 
-const Profile = () => {
-    const data = localStorage.getItem("user_id")
-    console.log(data)
-    const userId = localStorage.getItem("user_id") ?? "no user id";
-    const [user, setUser] = useState<RegisterUser>();
-
-    useEffect(() => {
-        auth
-            .userDetails(userId)
-            .then((res) => {
-                setUser(res.data);
-            })
-            .catch((e) => {
-                console.log(e);
-            });
-    }, []);
+    if (!user) {
+        return <div>No user data found</div>;
+    }
 
     return (
         <div>
-            <h2 className="text-xl text-orange-400">
-                {user?.name.first} {user?.name.middle} {user?.name.last}
+            <h2 className="text-xl text-orange-400 bg-slate-800">
+                {user.name.first} {user.name.middle} {user.name.last}
             </h2>
         </div>
     );

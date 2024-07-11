@@ -1,11 +1,13 @@
 import axios from "axios";
-import { UpdateProduct } from "../@types/@types";
+// import { UpdateProduct } from "../@types/@types";
 import { ProductData } from "../@types/productData";
 
 const baseUrl = "http://localhost:8080/api/v1/products";
 
 
-export const getProducts = () => axios.get(baseUrl);
+// get all products
+export const getAllProducts = () => axios.get(baseUrl);
+//get product by id
 export const getProductById = (id: string) => axios.get(baseUrl + `/${id}`);
 
 // export const isFavoriteUrl = (id: string) => {
@@ -51,11 +53,13 @@ export const getMyProductData = (id: string) => {
         },
     });
 }
-export const updateProduct = (id: string, data: UpdateProduct) => {
-    const url = `${baseUrl}/${id}`;
-    return axios.put(url, data, {
-        headers: {
-            "x-auth-token": localStorage.getItem("token"),
-        },
-    });
-}
+// export const updateProduct = (id: string, data: UpdateProduct) => {
+//     const url = `${baseUrl}/${id}`;
+//     return axios.put(url, data, {
+//         headers: {
+//             "x-auth-token": localStorage.getItem("token"),
+//         },
+//     });
+// }
+
+

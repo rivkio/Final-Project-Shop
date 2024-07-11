@@ -1,15 +1,15 @@
-import { Navigate } from "react-router-dom";
-import { FCC } from "../@types/@types";
+// import { Navigate } from "react-router-dom";
+// import { FCC } from "../@types/@types";
 
 
-const ProtectedRoute: FCC = ({ children }) => {
-    const isLoggedIn = localStorage.getItem("token");
+// const ProtectedRoute: FCC = ({ children }) => {
+//     const isLoggedIn = localStorage.getItem("token");
 
-    if (!isLoggedIn) {
-        return <Navigate to={"/"} replace />;
-    }
+//     if (!isLoggedIn) {
+//         return <Navigate to={"/"} replace />;
+//     }
 
-    return <>{children}</>;
-};
+//     return <>{children}</>;
+// };
 
-export default ProtectedRoute;
+// export default ProtectedRoute;

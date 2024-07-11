@@ -1,17 +1,17 @@
-import { Navigate } from "react-router-dom";
-import { FCC } from "../@types/@types";
-import { useAuth } from "../contexts/AuthContext";
+// import { Navigate } from "react-router-dom";
+// import { FCC } from "../@types/@types";
+// import { useAuth } from "../contexts/AuthContext";
 
 
-const ProtectedRouteAdmin: FCC = ({ children }) => {
-    const isLoggedIn = localStorage.getItem("token");
-    const { user } = useAuth();
+// const ProtectedRouteAdmin: FCC = ({ children }) => {
+//     const isLoggedIn = localStorage.getItem("token");
+//     const { user } = useAuth();
 
-    if (!isLoggedIn || !user?.isAdmin) {
-        return <Navigate to={"/"} replace />;
-    }
+//     if (!isLoggedIn || !user?.isAdmin) {
+//         return <Navigate to={"/"} replace />;
+//     }
 
-    return <>{children}</>;
-};
+//     return <>{children}</>;
+// };
 
-export default ProtectedRouteAdmin;
+// export default ProtectedRouteAdmin;

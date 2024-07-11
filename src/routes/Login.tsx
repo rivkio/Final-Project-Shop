@@ -1,17 +1,19 @@
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { ILogin } from "../@types/@types";
-import { useAuth } from "../contexts/AuthContext";
 import dialogs from "../ui/dialogs";
-import patterns from "../validation/patterns";
 import './CreateCard.scss';
+import { ILogin } from "../@types/@types";
+import { useAuth } from "../hooks/useAuth";
+import { FC } from "react";
+import patterns from "../validation/patterns";
 
 
-const Login = () => {
+
+const Login: FC = () => {
     const navigate = useNavigate();
     const { login } = useAuth();
 
-    const onLogin = (data: ILogin) => {
+    const onLogin: SubmitHandler<ILogin> = (data) => {
         login(data.email, data.password)
             .then(() => {
                 dialogs.success("Login", "Logged in").then(() => {
@@ -19,7 +21,7 @@ const Login = () => {
                     navigate("/");
                 });
             })
-            .catch((e: any) => {
+            .catch((e) => {
                 dialogs.error("Login Error", e.response.data);
             });
     };
@@ -31,7 +33,7 @@ const Login = () => {
     } = useForm<ILogin>();
 
     return (
-        <div className="create-card-container bg-purple-900  text-white dark:bg-slate-600">
+        <div className="create-card-container bg-blue-950 text-white dark:bg-slate-600">
             <form noValidate onSubmit={handleSubmit(onLogin)}>
                 {/* email */}
                 <section>
@@ -49,8 +51,6 @@ const Login = () => {
                     />
                     {errors.email && <p>{errors.email?.message}</p>}
                 </section>
-
-
 
                 {/* password */}
                 <section>
@@ -71,12 +71,13 @@ const Login = () => {
 
                 <div className="relative flex items-center mt-8">
                     <div className="border h-0 w-2/4 border-stone-300"></div>
-                    <div className=" text-stone-300 px-4 text-1xl font-normal">RO</div>
-                    <div className=" border h-0 w-2/4 border-stone-300"></div>
+                    <div className="text-stone-300 px-4 text-sm font-normal">OR</div>
+                    <div className="border h-0 w-2/4 border-stone-300"></div>
                 </div>
-                {/* <Link to="/register" type="submit"
-                    className="border border-indigo-900 rounded-lg  text-center  text-indigo-900 bg-white text-base font-semibold w-full py-3 mt-9">Signup
-                    now</Link> */}
+                <Link to="/register" type="submit"
+                    className="border border-indigo-900 rounded-lg text-center text-indigo-900 bg-white text-base font-semibold w-full py-3 mt-9">
+                    Signup now
+                </Link>
             </form>
         </div>
     );
