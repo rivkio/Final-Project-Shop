@@ -54,30 +54,11 @@ export type IUserInput = {
 };
 
 export type IUser = IUserInput & {
-    id: string;
+    _id: string;
     createdAt: Date;
     isAdmin: boolean;
     cart: ICartProduct[];
 };
-
-// export type User = {
-//     _id: string
-//     isBusiness: boolean
-//     email: string
-//     name: {
-//         first: string
-//         middle: string
-//         last: string
-//     },
-//     phone: string
-//     address: {
-//         street: string
-//         city: string
-//         state: string
-//         zip?: string
-//     }
-// }
-
 
 export type ILogin = {
     email: string;
@@ -90,27 +71,9 @@ export type IJWTPayload = {
     // isBusiness: boolean;
 };
 
-
-// export type UpdateProduct ={
-//     productName: string;
-//     subtitle: string;
-//     productDescription: string;
-//     price: number;
-//     color: string[];
-//     sizes: number[];
-//     model: string;
-//     web: string;
-//     image: IImage;
-//     category: string;
-//     quantity: number;
-//     barcode: number;
-// }
-
-
-
 export interface AuthContextProviderProps {
     children: ReactNode;
-}
+};
 
 export interface AuthContextType {
     token: string | null;
@@ -119,9 +82,45 @@ export interface AuthContextType {
     login: (email: string, password: string) => Promise<void>
     register: (form: IUser) => Promise<void>
     logout: () => void;
-}
+};
+
+export type ErrorType = {
+    status: number;
+    message: string;
+    details: string;
+};
 
 export interface DecodedToken {
     _id: string;
-    // ניתן להוסיף כאן שדות נוספים מהטוקן לפי הצורך
-}
+    isAdmin: boolean
+};
+
+interface SearchContextType {
+    searchTerm: string;
+    setSearchTerm: (term: string) => void;
+};
+
+export type FCC = ({ children }: { children: ReactNode }) => ReactNode;
+
+
+export type updateUserType = {
+    name: {
+        first: string;
+        middle: string;
+        last: string;
+    };
+    email: string;
+    phone: string;
+    image: {
+        url: string;
+        alt: string;
+    };
+    address: {
+        state: string;
+        country: string;
+        city: string;
+        street: string;
+        houseNumber: number;
+        zip: number;
+    };
+};

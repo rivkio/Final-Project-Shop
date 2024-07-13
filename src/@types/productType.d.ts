@@ -11,7 +11,6 @@ export type IProductInput = {
     image: IImage;
     category: string;
     quantity: number;
-    barcode: number;
 };
 
 

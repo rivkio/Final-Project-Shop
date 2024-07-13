@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ILogin, IUser } from "../@types/@types";
+import { ILogin, IUser, updateUserType } from "../@types/@types";
 
 export const baseUrl = "http://localhost:8080/api/v1";
 export const usersUrl = `${baseUrl}/users`;
@@ -11,12 +11,14 @@ export const login = (data: ILogin) => axios.post(loginUrl, data);
 
 export const userDetails = (id: string, token: string) => {
     const url = `${usersUrl}/${id}`;
-    return axios.get(url, {
-        headers: {
-            "x-auth-token": localStorage.getItem("token"),
-        },
-    
-    });
+    return axios.get(url,
+        {
+            headers: {
+                "x-auth-token": localStorage.getItem("token"),
+            },
+        }
+    );
+
 };
 
 export const businessUser = (id: string) => {
@@ -29,11 +31,43 @@ export const businessUser = (id: string) => {
         },
     });
 }
+//login user
+//get all users
+export const getAllUsers = () => {
+    const url = `${usersUrl}/`;
+    return axios.get(url, {
+        headers: {
+            "x-auth-token": localStorage.getItem("token"),
+        },
+    });
+}
+//get user by id
+export const getUserById = (id: string) => axios.get(`${usersUrl}/${id}`, {
+    headers: {
+        "x-auth-token": localStorage.getItem("token"),
+    },
+});
+
+//update user
+export const updateUser = (id: string, user: updateUserType) => {
+    return axios.put(`${usersUrl}/${id}`, user,
+        {
+            headers: {
+                "x-auth-token": localStorage.getItem("token"),
+            },
+        }
+    );
+};
+
+
 
 export const auth = {
     register,
     login,
     userDetails,
+    getAllUsers,
+    getUserById,
+    businessUser
 };
 
 export default auth;
