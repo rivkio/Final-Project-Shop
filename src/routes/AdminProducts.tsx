@@ -3,6 +3,9 @@ import { deleteProductById, getAllProducts } from '../services/products'; // ×•×
 import { IProduct } from '../@types/productType';
 import { Table } from 'flowbite-react';
 import { Link } from 'react-router-dom';
+import dialogs from '../ui/dialogs';
+
+// import dialogs, { showConfirmDialog } from '../ui/dialogs';
 
 
 
@@ -17,12 +20,19 @@ const AdminProducts = () => {
     }, []);
 
     const onDelete = (id: string) => {
-        deleteProductById(id)   
-            .then(() => {
-                setProducts(products.filter(product => product._id !== id));
+        dialogs.confirm("Are you sure?", "Do you want to delete this product?")
+            .then((result) => {
+                if (result.isConfirmed) {
+                    deleteProductById(id)
+                        .then(() => {
+                            setProducts(products.filter(product => product._id !== id));
+                            dialogs.success("Deleted!", "The product has been deleted.");
+                        })
+                        .catch(err => setError(err));
+                }
             })
             .catch(err => setError(err));
-    }
+    };
 
     return (
         <div className="overflow-x-auto">

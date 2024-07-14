@@ -5,7 +5,7 @@ import { IProduct } from '../@types/productType';
 
 
 
-const EditProduct = () => {
+const UpdateProduct = () => {
     const { id } = useParams<{ id: string }>();
     const [product, setProduct] = useState<IProduct | null>(null);
     const [error, setError] = useState<Error | null>(null);
@@ -36,13 +36,13 @@ const EditProduct = () => {
     if (error) return <div>Error: {error.message}</div>;
 
     return (
-        <div>
+        <div className='create-card-container bg-blue-950  text-white dark:bg-slate-600' >
             <h2>Edit Product</h2>
             {product ? (
                 <form onSubmit={handleSubmit}>
                     <label>
                         ProductName:
-                        <input type="text" name="title" value={product.productName} onChange={handleInputChange} />
+                        <input type="text" name="productName" value={product.productName} onChange={handleInputChange} />
                     </label>
                     <label>
                         Subtitle:
@@ -50,16 +50,33 @@ const EditProduct = () => {
                     </label>
                     <label>
                         ProductDescription:
-                        <input type="text" name="description" value={product.productDescription} onChange={handleInputChange} />
+                        <input type="text" name="productDescription" value={product.productDescription} onChange={handleInputChange} />
                     </label>
                     <label>
                         Price:
                         <input type="number" name="price" value={product.price} onChange={handleInputChange} />
                     </label>
                     <label>
-                        Sizes:
-                        <input type="number" name="size" value={product.sizes.toString()} onChange={handleInputChange} />
+                        Color:
+                        <input type="text" name="color" value={product.color.toString()} onChange={handleInputChange} />
                     </label>
+                    <label>
+                        Sizes:
+                        <input type="number" name="sizes" value={product.sizes.toString()} onChange={handleInputChange} />
+                    </label>
+                    <label>
+                        Model:
+                        <input type="text" name="model" value={product.model} onChange={handleInputChange} />
+                    </label>
+                    <label>
+                        Image:
+                        <input type="text" name="image" value={product.image.url} onChange={handleInputChange} />
+                    </label>
+                    <label>
+                        Category:
+                        <input type="text" name="category" value={product.category} onChange={handleInputChange} />
+                    </label>
+
                     <label>
                         Quantity:
                         <input type="number" name="quantity" value={product.quantity} onChange={handleInputChange} />
@@ -73,4 +90,4 @@ const EditProduct = () => {
     );
 };
 
-export default EditProduct;
+export default UpdateProduct;

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { getUserById, updateUser } from '../services/auth';
 import { useParams } from 'react-router-dom';
@@ -21,7 +21,6 @@ const UpdateUser = () => {
                     setValue('name.first', user.name.first);
                     setValue('name.middle', user.name.middle || '');
                     setValue('name.last', user.name.last);
-                    setValue('email', user.email);
                     setValue('phone', user.phone);
                     setValue('address.city', user.address.city);
                     setValue('address.street', user.address.street);
@@ -114,24 +113,6 @@ const UpdateUser = () => {
                     />
                     {errors.phone && (
                         <p className="text-red-500">{errors.phone?.message}</p>
-                    )}
-                </section>
-
-                {/* email */}
-                <section>
-                    <input
-                        placeholder="Email"
-                        type="email"
-                        {...register("email", {
-                            required: "This field is mandatory",
-                            pattern: {
-                                value: patterns.email,
-                                message: "Invalid email",
-                            },
-                        })}
-                    />
-                    {errors.email && (
-                        <p className="text-red-500">{errors.email?.message}</p>
                     )}
                 </section>
 

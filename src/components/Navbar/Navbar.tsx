@@ -4,26 +4,38 @@ import { Avatar, DarkThemeToggle, Dropdown, Navbar } from "flowbite-react";
 import { useAuth } from "../../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import { LuPackagePlus } from "react-icons/lu";
+import { AiOutlineProject } from "react-icons/ai";
+import { FiBox, FiUsers, FiTrendingUp } from "react-icons/fi";
 
 const Nav = () => {
-
     const { isLoggedIn, user, logout } = useAuth();
     const navigate = useNavigate();
-
 
     return (
         <Navbar fluid rounded>
             <Navbar.Brand href="https://flowbite-react.com">
                 <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Rivki's FinalProject</span>
             </Navbar.Brand>
-            
+
 
             <div className="flex md:order-2 items-center">
                 {isLoggedIn && user?.isAdmin && (
                     <Link to="/admin/create-product" className="mr-4">
-                        <LuPackagePlus size={24} className="text-gray hover:text-gray-300" />
+                        <FiBox size={24} className="text-gray hover:text-gray-300" />
                     </Link>
                 )}
+
+                {isLoggedIn && user?.isAdmin && (
+                    <Link to="/users" className="mr-4">
+                        <FiUsers size={24} className="text-gray hover:text-gray-300" />
+                    </Link>
+                )}
+                {isLoggedIn && user?.isAdmin && (
+                    <Link to="/users" className="mr-4">
+                        <FiTrendingUp size={24} className="text-gray hover:text-gray-300" />
+                    </Link>
+                )}
+
                 {isLoggedIn && user && (
                     <Dropdown
                         arrowIcon={false}
@@ -39,6 +51,7 @@ const Nav = () => {
                         <Dropdown.Item>Dashboard</Dropdown.Item>
                         <Dropdown.Item>Settings</Dropdown.Item>
                         <Dropdown.Item>Earnings</Dropdown.Item>
+                        <Dropdown.Item onClick={() => navigate(`/users/${user._id}`)}>Update Profile</Dropdown.Item>
                         <Dropdown.Divider />
                         <Dropdown.Item onClick={() => { logout(); navigate("/"); }}> Sign out </Dropdown.Item>
                     </Dropdown>

@@ -11,7 +11,8 @@ import ProtectedRouteAdmin from "./ProtectedRouteAdmin";
 import CreateProduct from "./CreateProduct";
 import UpdateUser from "./UpdateUser";
 import Users from "./Users";
-import AdminProducts from "./DeleteProduct";
+import AdminProducts from "./AdminProducts";
+import UpdeteProduct from "./UpdateProduct";
 
 
 
@@ -40,6 +41,7 @@ export const router = createBrowserRouter([
                     </ProtectedRouteAdmin>
             },
             { path: "/admin/Products", element: <AdminProducts /> },
+            { path: "/admin/products/:id", element: <UpdeteProduct /> },
             { path: "/users", element: <Users /> },
             { path: "/users/:id", element: <UpdateUser /> },
 
