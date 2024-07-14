@@ -66,9 +66,13 @@ export const AuthContextProvider: FC<AuthContextProviderProps> = ({ children }) 
         dialogs.success("Logout Successful", "You have been logged out successfully.");
     };
 
+    const updateUserContext = (updatedUser: IUser) => {
+        setUser(updatedUser);
+    };
+
     return (
         <AuthContext.Provider value={{
-            isLoggedIn, user, token, login, register, logout
+            isLoggedIn, user, token, login, register, logout, updateUserContext
         }}>
             {children}
         </AuthContext.Provider>

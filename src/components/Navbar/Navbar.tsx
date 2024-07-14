@@ -1,11 +1,12 @@
 "use client";
 
-import { Avatar, DarkThemeToggle, Dropdown, Navbar } from "flowbite-react";
+import { Avatar, DarkThemeToggle, Dropdown, Navbar, Tooltip } from "flowbite-react";
+import { FiBox, FiUsers, FiTrendingUp } from "react-icons/fi";
 import { useAuth } from "../../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import { LuPackagePlus } from "react-icons/lu";
 import { AiOutlineProject } from "react-icons/ai";
-import { FiBox, FiUsers, FiTrendingUp } from "react-icons/fi";
+
 
 const Nav = () => {
     const { isLoggedIn, user, logout } = useAuth();
@@ -17,24 +18,43 @@ const Nav = () => {
                 <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Rivki's FinalProject</span>
             </Navbar.Brand>
 
-
             <div className="flex md:order-2 items-center">
                 {isLoggedIn && user?.isAdmin && (
-                    <Link to="/admin/create-product" className="mr-4">
-                        <FiBox size={24} className="text-gray hover:text-gray-300" />
+                    <Link to="/admin/products" className="mr-4">
+                        <Tooltip
+                            content="Manage Products"
+                            placement="top"
+                            className="text-sm bg-gray-800 text-white rounded px-2 py-1"
+                        >
+                            <FiBox size={24} className="text-gray hover:text-gray-300" />
+                        </Tooltip>
                     </Link>
                 )}
 
                 {isLoggedIn && user?.isAdmin && (
-                    <Link to="/users" className="mr-4">
-                        <FiUsers size={24} className="text-gray hover:text-gray-300" />
+                    <Link to="/admin/users" className="mr-4">
+                        <Tooltip
+                            content="Manage Users"
+                            placement="top"
+                            className="text-sm bg-gray-800 text-white rounded px-2 py-1"
+                        >
+                            <FiUsers size={24} className="text-gray hover:text-gray-300" />
+                        </Tooltip>
                     </Link>
                 )}
+
                 {isLoggedIn && user?.isAdmin && (
-                    <Link to="/users" className="mr-4">
-                        <FiTrendingUp size={24} className="text-gray hover:text-gray-300" />
+                    <Link to="/admin/products" className="mr-4">
+                        <Tooltip
+                            content="Analitycs"
+                            placement="top"
+                            className="text-sm bg-gray-800 text-white rounded px-2 py-1"
+                        >
+                            <FiTrendingUp size={24} className="text-gray hover:text-gray-300" />
+                        </Tooltip>
                     </Link>
                 )}
+
 
                 {isLoggedIn && user && (
                     <Dropdown
@@ -48,10 +68,9 @@ const Nav = () => {
                             <span className="block text-sm">{user.name.first} {user.name.last}</span>
                             <span className="block truncate text-sm font-medium">{user.email}</span>
                         </Dropdown.Header>
-                        <Dropdown.Item>Dashboard</Dropdown.Item>
+                        <Dropdown.Item onClick={() => navigate(`/users/${user._id}`)}>Update Profile</Dropdown.Item>
                         <Dropdown.Item>Settings</Dropdown.Item>
                         <Dropdown.Item>Earnings</Dropdown.Item>
-                        <Dropdown.Item onClick={() => navigate(`/users/${user._id}`)}>Update Profile</Dropdown.Item>
                         <Dropdown.Divider />
                         <Dropdown.Item onClick={() => { logout(); navigate("/"); }}> Sign out </Dropdown.Item>
                     </Dropdown>

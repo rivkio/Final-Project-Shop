@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { deleteUserById, getAllUsers } from '../services/auth';
 import { IUser } from '../@types/@types';
-import { Card, TabItem, Table } from 'flowbite-react';
-import { Link } from 'react-router-dom';
+import { Table } from 'flowbite-react';
 import { FiTrash2 } from 'react-icons/fi';
 import dialogs from '../ui/dialogs';
 

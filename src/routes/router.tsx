@@ -40,10 +40,25 @@ export const router = createBrowserRouter([
                         <CreateProduct />
                     </ProtectedRouteAdmin>
             },
-            { path: "/admin/Products", element: <AdminProducts /> },
-            { path: "/admin/products/:id", element: <UpdeteProduct /> },
-            { path: "/users", element: <Users /> },
-            { path: "/users/:id", element: <UpdateUser /> },
+             {
+                path: "/admin/products/:id", element:
+                    <ProtectedRouteAdmin>
+                        <UpdeteProduct />
+                    </ProtectedRouteAdmin>
+            },
+            {
+                path: "/admin/products", element:
+                    <ProtectedRouteAdmin>
+                        <AdminProducts />
+                    </ProtectedRouteAdmin>
+            },
+            { path: "/admin/users", element: <Users /> },
+            {
+                path: "/users/:id", element:
+                    <ProtectedRouteUser>
+                        <UpdateUser />
+                    </ProtectedRouteUser>
+            },
 
         ],
     },
