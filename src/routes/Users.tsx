@@ -32,6 +32,7 @@ const Users = () => {
 
     return (
         <div className="overflow-x-auto">
+            <h2 className='mt-6 text-5xl font-extralight text-center mb-7'>Users</h2>
             <Table hoverable>
                 <Table.Head>
                     <Table.HeadCell>User Name</Table.HeadCell>

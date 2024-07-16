@@ -1,13 +1,10 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { deleteProductById, getAllProducts } from '../services/products'; // ודא שהפונקציה הזו קיימת בשירות המוצרים
-import { IProduct } from '../@types/productType';
-import { Table } from 'flowbite-react';
+import { Table, Tooltip } from 'flowbite-react';
 import { Link } from 'react-router-dom';
 import dialogs from '../ui/dialogs';
-
-// import dialogs, { showConfirmDialog } from '../ui/dialogs';
-
-
+import { FiPlus, FiTrash2 } from 'react-icons/fi';
+import { IProduct } from '../@types/productType';
 
 const AdminProducts = () => {
     const [products, setProducts] = useState<IProduct[]>([]);
@@ -35,12 +32,22 @@ const AdminProducts = () => {
     };
 
     return (
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto bg-white dark:border-gray-700 dark:bg-gray-800">
+            <h2 className='mt-9 text-5xl font-extralight text-center mb-3'>Products</h2>
+            <div className="flex justify-end mb-4">
+                <Tooltip content="Add Product" placement="top" className="text-sm bg-gray-800 text-white rounded px-2 py-1">
+                    <Link to="/admin/create-product" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-3 text-center inline-flex items-center me-8 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <FiPlus size={20} />
+                        <span className="sr-only">Add Product</span>
+                    </Link>
+                </Tooltip>
+            </div>
             <Table hoverable>
                 <Table.Head>
-                    <Table.HeadCell>ProductName</Table.HeadCell>
+                    <Table.HeadCell>Image</Table.HeadCell>
+                    <Table.HeadCell>Title</Table.HeadCell>
                     <Table.HeadCell>Subtitle</Table.HeadCell>
-                    <Table.HeadCell>ProductDescription</Table.HeadCell>
+                    <Table.HeadCell>Description</Table.HeadCell>
                     <Table.HeadCell>Price</Table.HeadCell>
                     <Table.HeadCell>Size</Table.HeadCell>
                     <Table.HeadCell>Quantity</Table.HeadCell>
@@ -51,9 +58,10 @@ const AdminProducts = () => {
                 <Table.Body className="divide-y">
                     {products.map((product) => (
                         <Table.Row key={product._id} className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                {product.productName}
+                            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white flex items-center">
+                                <img src={product.image.url} alt={product.image.alt} className="h-12 w-12 object-cover rounded-full mr-4" />
                             </Table.Cell>
+                            <Table.Cell>{product.productName}</Table.Cell>
                             <Table.Cell>{product.subtitle}</Table.Cell>
                             <Table.Cell>{product.productDescription}</Table.Cell>
                             <Table.Cell>{product.price}</Table.Cell>
@@ -65,9 +73,10 @@ const AdminProducts = () => {
                                 </Link>
                             </Table.Cell>
                             <Table.Cell>
-                                <button onClick={() => onDelete(product._id)} className="font-medium text-cyan-600 hover:underline dark:text-cyan-500">
-                                    delete
+                                <button onClick={() => onDelete(product._id)} className="text-red-600 hover:text-red-800">
+                                    <FiTrash2 size={20} />
                                 </button>
+
                             </Table.Cell>
                         </Table.Row>
                     ))}

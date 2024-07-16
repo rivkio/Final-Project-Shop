@@ -24,6 +24,8 @@ const Profile: React.FC = () => {
             <h2 className="text-xl text-orange-400 bg-slate-800">
                 {user.name.first} {user.name.middle} {user.name.last}
             </h2>
+            <p className="text-lg text-orange-400 bg-slate-800">{user.email}</p>
+            <p className="text-lg text-orange-400 bg-slate-800">{user.phone}</p>
         </div>
     );
 };
