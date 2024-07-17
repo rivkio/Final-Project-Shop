@@ -7,8 +7,8 @@ export type IProductInput = {
     color: string[];
     sizes: number[];
     model: string;
-    web: string;
     image: IImage;
+    alt: string;
     category: string;
     quantity: number;
 };

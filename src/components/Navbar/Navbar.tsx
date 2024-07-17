@@ -82,7 +82,7 @@ const Nav = () => {
                             <span className="block text-sm">{user.name.first} {user.name.last}</span>
                             <span className="block truncate text-sm font-medium">{user.email}</span>
                         </Dropdown.Header>
-                        <Dropdown.Item onClick={() => navigate(`/users/${user._id}`)}>Edit Profile</Dropdown.Item>
+                        <Dropdown.Item onClick={() => navigate(`/users/${user._id}`)}>Update Profile</Dropdown.Item>
                         <Dropdown.Item>Settings</Dropdown.Item>
                         <Dropdown.Item>Earnings</Dropdown.Item>
                         <Dropdown.Divider />

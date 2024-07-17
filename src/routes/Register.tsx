@@ -157,7 +157,7 @@ const Register = () => {
                 </section>
 
                 {/* image.url */}
-                <section>
+                {/* <section>
                     <input
                         placeholder="Image URL"
                         type="url"
@@ -171,10 +171,10 @@ const Register = () => {
                     {errors.image?.url && (
                         <p className="text-red-500">{errors.image?.url?.message}</p>
                     )}
-                </section>
+                </section> */}
 
                 {/* image.alt */}
-                <section>
+                {/* <section>
                     <input
                         placeholder="Image Description"
                         type="text"
@@ -186,7 +186,7 @@ const Register = () => {
                     {errors.image?.alt && (
                         <p className="text-red-500">{errors.image?.alt?.message}</p>
                     )}
-                </section>
+                </section> */}
 
                 {/* address.state */}
                 <section>

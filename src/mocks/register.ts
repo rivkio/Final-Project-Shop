@@ -7,10 +7,10 @@ export const registerMock = {
     "phone": "0542345567",
     "email": "rivki@gmail.com",
     "password": "Abc!123Abc",
-    "image": {
-        "url": "https://www.istockphoto.com/vector/blank-man-profile-head-icon-placeholder-gm1298261537-391152374",
-        "alt": "Placeholder image"
-    },
+    // "image": {
+    //     "url": "https://www.istockphoto.com/vector/blank-man-profile-head-icon-placeholder-gm1298261537-391152374",
+    //     "alt": "Placeholder image"
+    // },
     "address": {
         "state": "IL",
         "country": "Israel",

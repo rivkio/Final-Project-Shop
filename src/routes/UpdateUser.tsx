@@ -6,14 +6,14 @@ import { updateUserType } from '../@types/@types';
 import './Register.scss';
 import dialogs from "../ui/dialogs";
 import { useNavigate } from "react-router-dom";
-import patterns from '../validation/patterns';
+// import patterns from '../validation/patterns';
 import { useAuth } from '../hooks/useAuth';
 
 const UpdateUser = () => {
     const { id } = useParams<{ id: string }>();
     const { register, handleSubmit, setValue, formState: { errors }, reset } = useForm<updateUserType>();
     const navigate = useNavigate();
-    const { updateUserContext } = useAuth();
+    const { onUpdateUser } = useAuth();
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -30,8 +30,8 @@ const UpdateUser = () => {
                     setValue('address.houseNumber', user.address.houseNumber);
                     setValue('address.country', user.address.country);
                     setValue('address.zip', user.address.zip);
-                    setValue('image.url', user.image?.url || '');
-                    setValue('image.alt', user.image?.alt || '');
+                    // setValue('image.url', user.image?.url || '');
+                    // setValue('image.alt', user.image?.alt || '');
                     setValue('address.state', user.address.state || '');
                     setLoading(false);
                 })
@@ -45,7 +45,7 @@ const UpdateUser = () => {
             if (id) {
                 const res = await updateUser(id, data);
                 const updatedUser = res.data;
-                updateUserContext(updatedUser); // Update user context
+                onUpdateUser(updatedUser); // Update user context
                 dialogs.success("Success", "User updated successfully").then(() => {
                     reset(data);
                     navigate("/profile");
@@ -211,7 +211,7 @@ const UpdateUser = () => {
                 </section>
 
                 {/* image.url */}
-                <section>
+                {/* <section>
                     <input
                         placeholder="Image URL"
                         type="url"
@@ -225,10 +225,10 @@ const UpdateUser = () => {
                     {errors.image?.url && (
                         <p className="text-red-500">{errors.image?.url?.message}</p>
                     )}
-                </section>
+                </section> */}
 
                 {/* image.alt */}
-                <section>
+                {/* <section>
                     <input
                         placeholder="Image Description"
                         type="text"
@@ -240,7 +240,7 @@ const UpdateUser = () => {
                     {errors.image?.alt && (
                         <p className="text-red-500">{errors.image?.alt?.message}</p>
                     )}
-                </section>
+                </section> */}
 
                 {/* address.state */}
                 <section>
