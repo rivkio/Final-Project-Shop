@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FiBox, FiUsers, FiTrendingUp, FiUser } from "react-icons/fi";
 import { useAuth } from "../../hooks/useAuth";
 import Search from "../Search/Search";
+import "./Navbar.scss";
 
 
 const Nav = () => {
@@ -18,13 +19,13 @@ const Nav = () => {
             </Navbar.Brand>
 
             <div className="flex md:order-2 items-center">
-
                 <div className="mr-8">
                     <Search />
                 </div>
 
                 {isLoggedIn && user?.isAdmin && (
-                    <Link to="/admin/products" className="mr-4">
+                    <>
+                        <Link to="/admin/products" className="mr-4 hidden md:block">
                         <Tooltip
                             content="Manage Products"
                             placement="top"
@@ -33,41 +34,26 @@ const Nav = () => {
                             <FiBox size={24} className="text-gray hover:text-gray-300" />
                         </Tooltip>
                     </Link>
-                )}
-
-                {isLoggedIn && user?.isAdmin && (
-                    <Link to="/admin/users" className="mr-4">
-                        <Tooltip
-                            content="Manage Users"
-                            placement="top"
-                            className="text-sm bg-gray-800 text-white rounded px-2 py-1"
-                        >
-                            <FiUsers size={24} className="text-gray hover:text-gray-300" />
-                        </Tooltip>
-                    </Link>
-                )}
-
-
-                {isLoggedIn && user?.isAdmin && (
-                    <Link to="/admin/products" className="mr-8">
-                        <Tooltip
-                            content="Analitycs"
-                            placement="top"
-                            className="text-sm bg-gray-800 text-white rounded px-2 py-1"
-                        >
-                            <FiTrendingUp size={24} className="text-gray hover:text-gray-300" />
-                        </Tooltip>
-                    </Link>
-                )}
-
-                {!isLoggedIn && (
-                    <Tooltip content="Login" placement="bottom" className="text-xs bg-gray-800 text-white rounded px-1 py-1">
-                        <Link to="/login" className="mr-4 flex items-center">
-                            <FiUser size={24} className="text-gray hover:text-gray-300" />
+                        <Link to="/admin/users" className="mr-4 hidden md:block">
+                            <Tooltip
+                                content="Manage Users"
+                                placement="top"
+                                className="text-sm bg-gray-800 text-white rounded px-2 py-1"
+                            >
+                                <FiUsers size={24} className="text-gray hover:text-gray-300" />
+                            </Tooltip>
                         </Link>
-                    </Tooltip>
+                        <Link to="/admin/analytics" className="mr-8 hidden md:block">
+                            <Tooltip
+                                content="Analytics"
+                                placement="top"
+                                className="text-sm bg-gray-800 text-white rounded px-2 py-1"
+                            >
+                                <FiTrendingUp size={24} className="text-gray hover:text-gray-300" />
+                            </Tooltip>
+                        </Link>
+                    </>
                 )}
-
 
 
                 {isLoggedIn && user && (
@@ -87,20 +73,42 @@ const Nav = () => {
                         <Dropdown.Item>Earnings</Dropdown.Item>
                         <Dropdown.Divider />
                         <Dropdown.Item onClick={() => { logout(); navigate("/"); }}> Sign out </Dropdown.Item>
+                        {user.isAdmin && (
+                            <>
+                                <Dropdown.Divider className="block md:hidden" />
+                                <Dropdown.Item onClick={() => navigate("/admin/products")} className="block md:hidden">
+                                    <FiBox size={20} className="mr-2" /> Manage Products
+                                </Dropdown.Item>
+                                <Dropdown.Item onClick={() => navigate("/admin/users")} className="block md:hidden">
+                                    <FiUsers size={20} className="mr-2" /> Manage Users
+                                </Dropdown.Item>
+                                <Dropdown.Item onClick={() => navigate("/admin/analytics")} className="block md:hidden">
+                                    <FiTrendingUp size={20} className="mr-2" /> Analytics
+                                </Dropdown.Item>
+                            </>
+                        )}
                     </Dropdown>
 
                 )}
 
+
+                {!isLoggedIn && (
+                    <Tooltip content="Login" placement="bottom" className="text-xs bg-gray-800 text-white rounded px-1 py-1">
+                        <Link to="/login" className="mr-4 flex items-center">
+                            <FiUser size={24} className="text-gray hover:text-gray-300" />
+                        </Link>
+                    </Tooltip>
+                )}
+
+
                 <Navbar.Toggle />
                 <DarkThemeToggle className="ml-2" />
             </div>
-            <Navbar.Collapse>
+            <Navbar.Collapse className="md:hidden">
                 <Navbar.Link href="/" active>
                     Home
                 </Navbar.Link>
                 <Navbar.Link href="#">About</Navbar.Link>
-                {/*  {!isLoggedIn && <Navbar.Link href="/register">Register</Navbar.Link>} */}
-
                 {isLoggedIn && <Navbar.Link href="/profile">Profile</Navbar.Link>}
                 <Navbar.Link href="#">Contact</Navbar.Link>
             </Navbar.Collapse>
@@ -109,4 +117,3 @@ const Nav = () => {
 };
 
 export default Nav;
-
