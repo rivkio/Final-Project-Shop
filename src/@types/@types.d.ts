@@ -15,12 +15,6 @@ export type IAddress = {
     zip?: string;
 };
 
-export type IImage = {
-    url: string;
-    alt: string;
-};
-
-
 export type RegisterUser = {
     name: {
         first: string;

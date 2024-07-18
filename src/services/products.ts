@@ -1,5 +1,4 @@
 import axios from "axios";
-import { IProductInput } from "../@types/productType";
 
 
 export const baseUrl = "http://localhost:8080/api/v1/products";
@@ -16,6 +15,7 @@ export const createNewProduct = (data: FormData) => {
     return axios.post(url, data, {
         headers: {
             "x-auth-token": localStorage.getItem("token"),
+            "Content-Type": "multipart/form-data",
         },
     });
 };
@@ -31,11 +31,12 @@ export const deleteProductById = (id: string) => {
 };
 
 //update product
-export const updateProduct = (id: string, product: IProductInput) => {
+export const updateProduct = (id: string, data: FormData) => {
     const url = `${baseUrl}/${id}`;
-    return axios.put(url, product, {
+    return axios.put(url, data, {
         headers: {
             "x-auth-token": localStorage.getItem("token"),
+            "Content-Type": "multipart/form-data",
         },
     });
 };
