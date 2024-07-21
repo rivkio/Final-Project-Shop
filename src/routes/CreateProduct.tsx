@@ -32,14 +32,8 @@ const CreateProduct = () => {
         formData.append("subtitle", data.subtitle);
         formData.append("productDescription", data.productDescription);
         formData.append("price", data.price.toString());
-
-        const sizesArray = data.sizes.split(',').map(size => parseInt(size.trim(), 10));
-        sizesArray.forEach(size => formData.append("sizes[]", size.toString()));
-
-        const colorsArray = data.color.split(',').map(color => color.trim());
-        colorsArray.forEach(color => formData.append("color[]", color));
-
-
+        formData.append("color", data.color);
+        formData.append("size", data.size.toString() );
         formData.append("model", data.model);
         formData.append("quantity", data.quantity.toString());
         formData.append("category", data.category);
@@ -95,8 +89,8 @@ const CreateProduct = () => {
                     {errors.alt && <p className="text-red-500">{errors.alt.message}</p>}
                 </section>
                 <section>
-                    <input placeholder="Sizes" type="text" {...register('sizes', { required: "Sizes is required" })} />
-                    {errors.sizes && <p className="text-red-500">{errors.sizes.message}</p>}
+                    <input placeholder="Size" type="text" {...register('size', { required: "Size is required" })} />
+                    {errors.size && <p className="text-red-500">{errors.size.message}</p>}
                 </section>
                 <section>
                     <input placeholder="Model" {...register('model', { required: 'Model is required' })} />

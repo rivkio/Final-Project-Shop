@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { deleteProductById, getAllProducts } from '../services/products'; // ודא שהפונקציה הזו קיימת בשירות המוצרים
 import { Table, Tooltip } from 'flowbite-react';
 import { Link } from 'react-router-dom';
@@ -59,13 +59,13 @@ const AdminProducts = () => {
                     {products.map((product) => (
                         <Table.Row key={product._id} className="bg-white dark:border-gray-700 dark:bg-gray-800">
                             <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white flex items-center">
-                                <img src={product.image.url} alt={product.image.alt} className="h-12 w-12 object-cover rounded-full mr-4" />
+                                <img src={product.image.url} alt={product.alt} className="h-12 w-12 object-cover rounded-full mr-4" />
                             </Table.Cell>
                             <Table.Cell>{product.productName}</Table.Cell>
                             <Table.Cell>{product.subtitle}</Table.Cell>
                             <Table.Cell>{product.productDescription}</Table.Cell>
                             <Table.Cell>{product.price}</Table.Cell>
-                            <Table.Cell>{product.sizes}</Table.Cell>
+                            <Table.Cell>{product.size}</Table.Cell>
                             <Table.Cell>{product.quantity}</Table.Cell>
                             <Table.Cell>
                                 <Link to={`/admin/products/${product._id}`} className="font-medium text-cyan-600 hover:underline dark:text-cyan-500">

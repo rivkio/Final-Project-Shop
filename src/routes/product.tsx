@@ -28,7 +28,7 @@ const Product = () => {
             <img className="product-image" src={product.image.url} alt={product.alt} />
             <p className="product-description">{product.productDescription}</p>
             <p className="product-price">${product.price.toFixed(2)}</p>
-            <p className="product-size">Size: {product.sizes}</p>
+            <p className="product-size">Size: {product.size}</p>
             <p className="product-quantity">
                 {product.quantity > 0 ? 'In Stock' : 'Out of Stock'}
             </p>

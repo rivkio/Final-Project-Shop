@@ -39,19 +39,13 @@ const Products: FC = () => {
             {filteredProducts.map(product => (
                 <Card key={product._id} className="product-card">
                     <Link to={`/products/${product._id}`}>
-                        <img src={product.image.url} alt={product.image.alt} className="w-full h-48 object-cover rounded-t-lg" />
+                        <img src={product.image.url} alt={product.alt} className="w-full h-48 object-cover rounded-t-lg" />
                         <h5 className="text-xl font-bold">{product.productName}</h5>
                         <h6 className="text-md font-semibold">{product.subtitle}</h6>
                         <p>{product.productDescription}</p>
                         <p className="text-lg font-semibold">${product.price}</p>
                     </Link>
-                    {/* <p>Size: {product.sizes}</p> */}
-                    <label className='font-bold'>Choose Size:</label>
-                    <select className="size-select">
-                        {product.sizes.map(size => (
-                            <option key={size} value={size}>{size}</option>
-                        ))}
-                    </select>
+                    <p className="product-size">Size: {product.size}</p>
                     <p>Quantity: {product.quantity}</p>
                     <p>Barcode: {product.barcode}</p>
                     <button className="buy-now-button">Buy Now</button>

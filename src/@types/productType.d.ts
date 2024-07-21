@@ -8,8 +8,8 @@ export type IProductInput = {
     subtitle: string;
     productDescription: string;
     price: number;
-    color: string[];
-    sizes: number[];
+    color: string;
+    size: number;
     model: string;
     image: IImage;
     alt: string;

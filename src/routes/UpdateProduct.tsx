@@ -28,7 +28,7 @@ const UpdateProduct = () => {
                     setValue('price', product.price);
                     setImageUrl(product.image.url);
                     setValue('alt', product.alt);
-                    setValue('sizes', product.sizes);
+                    setValue('size', product.size);
                     setValue('color', product.color);
                     setValue('model', product.model);
                     setValue('category', product.category);
@@ -48,13 +48,8 @@ const UpdateProduct = () => {
                 formData.append("subtitle", data.subtitle);
                 formData.append("productDescription", data.productDescription);
                 formData.append("price", data.price.toString());
-
-                // const sizesArray = data.sizes.split(',').map(size => parseInt(size.trim(), 10));
-                // sizesArray.forEach(size => formData.append("sizes[]", size.toString()));
-
-                // const colorsArray = data.color.split(',').map(color => color.trim());
-                // colorsArray.forEach(color => formData.append("color[]", color));
-
+                formData.append("color", data.color);
+                formData.append("size", data.size.toString());
                 formData.append("model", data.model);
                 formData.append("category", data.category);
                 formData.append("quantity", data.quantity.toString());
@@ -130,8 +125,8 @@ const UpdateProduct = () => {
 
                 {/* sizes */}
                 <section>
-                    <input placeholder="Sizes" {...register('sizes', { required: 'Size is required' })} />
-                    {errors.sizes && <p className="text-red-500">{errors.sizes.message}</p>}
+                    <input placeholder="Sizes" {...register('size', { required: 'Size is required' })} />
+                    {errors.size && <p className="text-red-500">{errors.size.message}</p>}
                 </section>
 
                 {/* color */}

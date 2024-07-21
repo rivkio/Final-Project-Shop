@@ -104,7 +104,7 @@ const Nav = () => {
                 <Navbar.Toggle />
                 <DarkThemeToggle className="ml-2" />
             </div>
-            <Navbar.Collapse className="md:hidden">
+            <Navbar.Collapse>
                 <Navbar.Link href="/" active>
                     Home
                 </Navbar.Link>
