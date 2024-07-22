@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import './product.scss';
 import { getProductById } from '../services/products';
 import { IProduct } from '../@types/productType';
+import AddToCartButton from '../components/AddToCartButton/AddToCartButton';
 
 const Product = () => {
     const { id } = useParams();
@@ -33,6 +34,7 @@ const Product = () => {
                 {product.quantity > 0 ? 'In Stock' : 'Out of Stock'}
             </p>
             <p className="product-barcode">Barcode: {product.barcode}</p>
+            <AddToCartButton productId={product._id} onAdd={() => console.log("Product added to cart")} />
         </div>
     );
 };

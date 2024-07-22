@@ -13,6 +13,7 @@ import UpdateUser from "./UpdateUser";
 import Users from "./Users";
 import AdminProducts from "./AdminProducts";
 import UpdeteProduct from "./UpdateProduct";
+import Cart from "./Cart";
 
 
 
@@ -58,6 +59,9 @@ export const router = createBrowserRouter([
                     <ProtectedRouteUser>
                         <UpdateUser />
                     </ProtectedRouteUser>
+            },
+            {
+                path: "/cart", element: <Cart />,
             },
 
         ],

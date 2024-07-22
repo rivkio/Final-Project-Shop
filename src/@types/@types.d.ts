@@ -65,7 +65,7 @@ export type IJWTPayload = {
     // isBusiness: boolean;
 };
 
-export interface AuthContextProviderProps {
+export interface ContextProviderProps {
     children: ReactNode;
 };
 

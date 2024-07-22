@@ -125,7 +125,7 @@ const UpdateProduct = () => {
 
                 {/* sizes */}
                 <section>
-                    <input placeholder="Sizes" {...register('size', { required: 'Size is required' })} />
+                    <input placeholder="Size" {...register('size', { required: 'Size is required' })} />
                     {errors.size && <p className="text-red-500">{errors.size.message}</p>}
                 </section>
 

@@ -2,15 +2,17 @@
 
 import { Avatar, DarkThemeToggle, Dropdown, Navbar, Tooltip } from "flowbite-react";
 import { Link, useNavigate } from "react-router-dom";
-import { FiBox, FiUsers, FiTrendingUp, FiUser } from "react-icons/fi";
+import { FiBox, FiUsers, FiTrendingUp, FiUser, FiShoppingCart } from "react-icons/fi";
 import { useAuth } from "../../hooks/useAuth";
 import Search from "../Search/Search";
 import "./Navbar.scss";
+import { useCart } from "../../hooks/useCart";
 
 
 const Nav = () => {
     const { isLoggedIn, user, logout } = useAuth();
     const navigate = useNavigate();
+    const { cart } = useCart();
 
     return (
         <Navbar fluid rounded>
@@ -22,6 +24,23 @@ const Nav = () => {
                 <div className="mr-8">
                     <Search />
                 </div>
+
+                <Link to="/cart" className="mr-4">
+                    <Tooltip
+                        content="View Cart"
+                        placement="top"
+                        className="text-sm bg-gray-800 text-white rounded px-2 py-1"
+                    >
+                        <div className="relative">
+                            <FiShoppingCart size={24} className={cart && cart.totalQuantity > 0 ? "text-red-500" : "text-gray-300"} />
+                            {cart && cart.totalQuantity > 0 && (
+                                <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full px-2 text-xs">
+                                    {cart.totalQuantity}
+                                </span>
+                            )}
+                        </div>
+                    </Tooltip>
+                </Link>
 
                 {isLoggedIn && user?.isAdmin && (
                     <>

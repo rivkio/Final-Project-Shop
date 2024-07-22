@@ -1,13 +1,13 @@
 import { jwtDecode } from "jwt-decode";
 import { createContext, FC, useEffect, useMemo, useState } from "react";
 import * as auth from "../services/auth";
-import { AuthContextProviderProps, AuthContextType, DecodedToken, IUser, updateUserType } from "../@types/@types";
+import { AuthContextType, ContextProviderProps, DecodedToken, IUser } from "../@types/@types";
 import dialogs from "../ui/dialogs";
 
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 
-export const AuthContextProvider: FC<AuthContextProviderProps> = ({ children }) => {
+export const AuthContextProvider: FC<ContextProviderProps> = ({ children }) => {
     const [token, setToken] = useState<string | null>(localStorage.getItem("token"));
 
     const [user, setUser] = useState<IUser | undefined>()
@@ -20,7 +20,7 @@ export const AuthContextProvider: FC<AuthContextProviderProps> = ({ children }) 
         setLoading(true)
         if (token) {
             const { _id } = jwtDecode(token) as any
-            auth.userDetails(_id, token).then((res) => {
+            auth.userDetails(_id).then((res) => {
                 setUser(res.data)
             }).finally(() => setLoading(false))
         }
@@ -40,7 +40,7 @@ export const AuthContextProvider: FC<AuthContextProviderProps> = ({ children }) 
                 const decodedToken = jwtDecode<DecodedToken>(token);
                 const userId = decodedToken._id;
 
-                auth.userDetails(userId, token)
+                auth.userDetails(userId)
                     .then((res) => {
                         setUser(res.data);
                     })
