@@ -1,4 +1,4 @@
-import cartService, { clearCart } from '../services/cart';
+import cartService from '../services/cart';
 // import { ICartItem } from '../@Types/productType'; // עדכון לפי הטיפוסים המוגדרים
 import './Cart.scss';
 import { useCart } from '../hooks/useCart';
@@ -20,13 +20,15 @@ const Cart = () => {
     };
 
     const handleClearCart = async () => {
-        const result = await dialogs.confirm('Are you sure?', 'Do you want to clear your cart?');
+        const result = await dialogs.confirm("Clear Cart", "Are you sure you want to clear the cart?");
         if (result.isConfirmed) {
             try {
-                await clearCart(); // ניקוי העגלה
-                await fetchCart(); // רענון העגלה לאחר ניקוי
+                await cartService.clearCart(); // ניקוי העגלה
+                fetchCart(); // רענון העגלה לאחר ניקוי
+                dialogs.success("Cart Cleared", "Your cart has been cleared successfully.");
             } catch (error) {
                 console.error('Failed to clear the cart.', error);
+                dialogs.error("Error", "Failed to clear the cart.");
             }
         }
     };
@@ -53,7 +55,10 @@ const Cart = () => {
                             <button onClick={() => handleRemoveItem(item.productId)} className="remove-button">Remove</button>
                         </div>
                     ))}
-                    <button onClick={handleClearCart} className="clear-cart-button">Clear Cart</button>
+                    <button onClick={handleClearCart} className="clear-cart-button">
+                        Clear Cart
+                        <FiTrash />
+                    </button>
                 </div>
             </div>
             <div className="cart-summary w-full md:w-1/4 p-4 rounded-lg shadow-lg">

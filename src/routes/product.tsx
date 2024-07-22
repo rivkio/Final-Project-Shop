@@ -34,7 +34,13 @@ const Product = () => {
                 {product.quantity > 0 ? 'In Stock' : 'Out of Stock'}
             </p>
             <p className="product-barcode">Barcode: {product.barcode}</p>
-            <AddToCartButton productId={product._id} onAdd={() => console.log("Product added to cart")} />
+            <AddToCartButton
+                productId={product._id}
+                productName={product.productName}
+                price={product.price}
+                image={product.image.url ?? ''}
+                onAdd={() => console.log("Product added to cart")}
+            />
         </div>
     );
 };
