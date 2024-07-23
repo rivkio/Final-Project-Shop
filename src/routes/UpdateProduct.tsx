@@ -1,16 +1,16 @@
-import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
-import { getProductById, updateProduct } from '../services/products';
-import { IProduct } from '../@types/productType';
-import './CreateProduct.scss';
-import dialogs from '../ui/dialogs';
+import { useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
+import "./CreateProduct.scss";
+import dialogs from "../ui/dialogs";
+import { getProductById, updateProduct } from "../services/products";
+import { IProductInput } from "../@types/productType";
+import { useState, useEffect } from "react";
 
 
 
 const UpdateProduct = () => {
     const { id } = useParams<{ id: string }>();
-    const { register, handleSubmit, setValue, formState: { errors } } = useForm<IProduct>();
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm<IProductInput>();
     const [error, setError] = useState<Error | null>(null);
     const navigate = useNavigate();
     const [image, setImage] = useState<File | null>(null);
@@ -28,28 +28,31 @@ const UpdateProduct = () => {
                     setValue('price', product.price);
                     setImageUrl(product.image.url);
                     setValue('alt', product.alt);
-                    setValue('size', product.size);
+                    setValue('sizes', product.sizes.join(',')); // הפיכת המערך למחרוזת עם פסיקים
                     setValue('color', product.color);
                     setValue('model', product.model);
                     setValue('category', product.category);
                     setValue('quantity', product.quantity);
-
                 })
                 .catch(err => setError(err));
         }
     }, [id, setValue]);
 
-
-    const onSubmit = async (data: IProduct) => {
+    const onSubmit = async (data: IProductInput) => {
         try {
             if (id) {
+                const sizesArray: string[] = data.sizes.split(',').map((size: string) => parseInt(String(size).trim(), 10));
                 const formData = new FormData();
                 formData.append("productName", data.productName);
                 formData.append("subtitle", data.subtitle);
                 formData.append("productDescription", data.productDescription);
                 formData.append("price", data.price.toString());
+
+                sizesArray.forEach((size: string, index) => {
+                    formData.append(`sizes[${index}]`, size.toString());
+                });
+
                 formData.append("color", data.color);
-                formData.append("size", data.size.toString());
                 formData.append("model", data.model);
                 formData.append("category", data.category);
                 formData.append("quantity", data.quantity.toString());
@@ -67,7 +70,7 @@ const UpdateProduct = () => {
             }
         } catch (error: any) {
             console.log(data);
-            dialogs.error("Error", error);
+            dialogs.error("Error", error.response.data.message);
             console.log(error);
         }
     };
@@ -125,8 +128,8 @@ const UpdateProduct = () => {
 
                 {/* sizes */}
                 <section>
-                    <input placeholder="Size" {...register('size', { required: 'Size is required' })} />
-                    {errors.size && <p className="text-red-500">{errors.size.message}</p>}
+                    <input placeholder="Size" {...register('sizes', { required: 'Size is required' })} />
+                    {errors.sizes && <p className="text-red-500">{errors.sizes.message}</p>}
                 </section>
 
                 {/* color */}

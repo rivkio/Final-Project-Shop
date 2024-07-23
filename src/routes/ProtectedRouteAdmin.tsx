@@ -3,7 +3,6 @@ import { DecodedToken, FCC } from "../@types/@types";
 import { jwtDecode } from "jwt-decode";
 
 
-
 const ProtectedRouteAdmin: FCC = ({ children }) => {
     const token = localStorage.getItem("token");
     const decodedToken = jwtDecode<DecodedToken>(token as string);

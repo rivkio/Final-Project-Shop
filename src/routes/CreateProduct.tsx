@@ -26,6 +26,8 @@ const CreateProduct = () => {
             return;
         }
 
+        // פיצול השדה sizes למערך מספרים
+        const sizesArray: string[] = data.sizes.split(',').map((size: string) => parseInt(String(size).trim(), 10));
 
         const formData = new FormData();
         formData.append("productName", data.productName);
@@ -33,17 +35,23 @@ const CreateProduct = () => {
         formData.append("productDescription", data.productDescription);
         formData.append("price", data.price.toString());
         formData.append("color", data.color);
-        formData.append("size", data.size.toString() );
         formData.append("model", data.model);
         formData.append("quantity", data.quantity.toString());
         formData.append("category", data.category);
         formData.append("alt", data.alt);
+
+        // הוספת sizes כמספר פריטים ב-FormData
+        sizesArray.forEach((size: string, index) => {
+            formData.append(`sizes[${index}]`, size);
+        });
+
         if (image) {
             formData.append("image", image);
             console.log(image);
         }
 
         try {
+            console.log("Form Data:", Object.fromEntries(formData.entries())); // לוג לפני שליחה
             await createNewProduct(formData);
             dialogs.success("Success", "Product Created Successfully")
                 .then(() => {
@@ -51,7 +59,7 @@ const CreateProduct = () => {
 
                 });
         } catch (error: any) {
-            console.log(data);
+            console.log("Form Data Error:", Object.fromEntries(formData.entries())); // לוג בשגיאה
             dialogs.error("Error", error.response);
             console.log(error);
         }
@@ -89,8 +97,8 @@ const CreateProduct = () => {
                     {errors.alt && <p className="text-red-500">{errors.alt.message}</p>}
                 </section>
                 <section>
-                    <input placeholder="Size" type="text" {...register('size', { required: "Size is required" })} />
-                    {errors.size && <p className="text-red-500">{errors.size.message}</p>}
+                    <input placeholder="Sizes (comma separated, e.g., 2,4,6,8)" {...register('sizes', { required: 'Sizes are required' })} />
+                    {errors.sizes && <p className="text-red-500">{errors.sizes.message}</p>}
                 </section>
                 <section>
                     <input placeholder="Model" {...register('model', { required: 'Model is required' })} />

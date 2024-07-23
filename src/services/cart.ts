@@ -11,7 +11,7 @@ export const getCart = () => {
     });
 };
 
-export const addProductToCart = (productId: string, quantity: number, size: number) => {
+export const addProductToCart = (productId: string, quantity: number, size: string) => {
     return axios.post(`${cartUrl}/add`, {
         productId,
         quantity,
@@ -23,10 +23,9 @@ export const addProductToCart = (productId: string, quantity: number, size: numb
     });
 };
 
-export const removeProductFromCart = (productId: string, quantity: number) => {
+export const removeProductFromCart = (productId: string) => {
     return axios.post(`${cartUrl}/remove`, {
-        productId,
-        quantity
+        productId
     }, {
         headers: {
             "x-auth-token": localStorage.getItem("token"),
@@ -42,11 +41,23 @@ export const clearCart = (/* token: string */) => {
     });
 };
 
-export const cart = {
+export const updateProductQuantity = (productId: string, quantity: number) => {
+    return axios.patch(`${ cartUrl }/update`, {
+        productId,
+        quantity
+    }, {
+        headers: {
+            "x-auth-token": localStorage.getItem("token"),
+        }
+    });
+};
+
+export const cartService = {
     getCart,
     addProductToCart,
+    updateProductQuantity,
     removeProductFromCart,
     clearCart
 };
 
-export default cart;
+export default cartService;

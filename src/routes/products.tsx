@@ -45,7 +45,7 @@ const Products: FC = () => {
                         <p>{product.productDescription}</p>
                         <p className="text-lg font-semibold">${product.price}</p>
                     </Link>
-                    <p className="product-size">Size: {product.size}</p>
+                    <p className="product-size">Size: {product.sizes}</p>
                     <p>Quantity: {product.quantity}</p>
                     <p>Barcode: {product.barcode}</p>
                     <button className="buy-now-button">Buy Now</button>

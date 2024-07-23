@@ -5,17 +5,18 @@ import './AddToCartButton.scss';
 import { useCart } from '../../hooks/useCart';
 import dialogs from '../../ui/dialogs';
 
-const AddToCartButton: React.FC<{ productId: string, productName: string, price: number, image: string, onAdd: () => void }> = ({ productId, productName, price, image, onAdd }) => {
+const AddToCartButton: React.FC<{ productId: string, productName: string, price: number, image: string, size: string, onAdd: () => void }> = ({ productId, productName, price, image, size, onAdd }) => {
     const { fetchCart } = useCart();
     const handleAddToCart = async () => {
         try {
-            await cart.addProductToCart(productId, 1, 2); // לדוגמה, ניתן לשנות בהתאם לצורך
+            await cart.addProductToCart(productId, 1, '2'); // לדוגמה, ניתן לשנות בהתאם לצורך
             dialogs.showPopup(
                 'Product Added',
                 `<div style="display: flex; align-items: center;">
                     <img src="${image}" alt="${productName}" style="width: 50px; height: 50px; object-fit: cover; margin-right: 10px;" />
                     <div>
                         <p>${productName} has been added to your cart.</p>
+                        <p>Size: $${size}</p>
                         <p>Price: $${price.toFixed(2)}</p>
                     </div>
                 </div>`

@@ -9,7 +9,7 @@ export type IProductInput = {
     productDescription: string;
     price: number;
     color: string;
-    size: number;
+    sizes: string[];
     model: string;
     image: IImage;
     alt: string;

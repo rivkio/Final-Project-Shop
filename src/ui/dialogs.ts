@@ -50,7 +50,7 @@ export const showPopup = (title: string, html: string) => {
         position: "top-end",
         showConfirmButton: false,
         width: 300,
-        timer: 6000,
+        timer: 2000,
         customClass: {
             popup: 'custom-font-size'
         }
