@@ -10,13 +10,14 @@ import cart from '../services/cart';
 const Product = () => {
     const { id } = useParams();
     const [product, setProduct] = useState<IProduct>();
-    const [selectedSize, setSelectedSize] = useState<string>('2'); // מידה ברירת מחדל
+    const [selectedSize, setSelectedSize] = useState<string>(''); // מידה ברירת מחדל ריקה
     const navigate = useNavigate();
 
     useEffect(() => {
         getProductById(id || "")
             .then(res => {
                 setProduct(res.data);
+                setSelectedSize(res.data.sizes[0]); // להגדיר את המידה הראשונה כמידה ברירת מחדל
             })
             .catch(err => console.log(err));
     }, [id]);

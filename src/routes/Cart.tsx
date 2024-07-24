@@ -6,12 +6,23 @@ import { ICartItem } from '../@types/productType';
 import dialogs from '../ui/dialogs';
 import { FiArrowLeft, FiTrash } from 'react-icons/fi'; // Importing FiArrowLeft from react-icons/fi
 import { Link } from 'react-router-dom'; // Importing Link from react-router-dom
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Tooltip } from 'flowbite-react';
+import { useAuth } from '../hooks/useAuth';
 
 const Cart = () => {
-    const { cart, fetchCart } = useCart();
+    const { cart, fetchCart, setCart } = useCart();
+    const { token } = useAuth();
     const [quantities, setQuantities] = useState<{ [productId: string]: number }>({});
+
+    useEffect(() => {
+        if (token) {
+            fetchCart();
+        } else {
+            setCart(null);
+        }
+    }, [token]);
+
 
     const handleRemoveItem = async (productId: string) => {
         try {
@@ -48,6 +59,19 @@ const Cart = () => {
             console.error('Failed to update product quantity.', error);
         }
     };
+
+    if (!token) {
+        return (
+            <div className="empty-cart flex flex-col items-center justify-center">
+                <h2 className="text-2xl font-semibold mb-4">You are not logged in</h2>
+                <p className="text-lg mb-4">Please log in to view your cart.</p>
+                <Link to="/login" className="back-to-shopping text-blue-800 hover:underline flex items-center">
+                    <FiArrowLeft className="mr-2" />
+                    Go to Login
+                </Link>
+            </div>
+        );
+    }
 
     if (!cart || cart.items.length === 0) {
         return (

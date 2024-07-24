@@ -5,7 +5,7 @@ import { AuthContextType, ContextProviderProps, DecodedToken, IUser } from "../@
 import dialogs from "../ui/dialogs";
 
 
-export const AuthContext = createContext<AuthContextType | null>(null);
+export const AuthContext = createContext<AuthContextType| null>(null);
 
 export const AuthContextProvider: FC<ContextProviderProps> = ({ children }) => {
     const [token, setToken] = useState<string | null>(localStorage.getItem("token"));
@@ -30,7 +30,8 @@ export const AuthContextProvider: FC<ContextProviderProps> = ({ children }) => {
     }, [token])
 
 
-    const login = async (email: string, password: string) => {
+
+    /* const login = async (email: string, password: string) => {
         await auth
             .login({ email, password })
             .then((res) => {
@@ -52,6 +53,24 @@ export const AuthContextProvider: FC<ContextProviderProps> = ({ children }) => {
                 console.error("Login error:", error);
             });
     };
+ */
+
+    const login = async (email: string, password: string) => {
+        try {
+            const res = await auth.login({ email, password });
+            const token = res.data;
+            setToken(token);
+            localStorage.setItem("token", token);
+            const decodedToken = jwtDecode<DecodedToken>(token);
+            const userId = decodedToken._id;
+
+            const userRes = await auth.userDetails(userId);
+            setUser(userRes.data);
+        } catch (error) {
+            console.error("Login error:", error);
+            throw error; // זריקת השגיאה החוצה
+        }
+    };
 
 
     const register = async (form: IUser) => {
@@ -62,13 +81,16 @@ export const AuthContextProvider: FC<ContextProviderProps> = ({ children }) => {
     const logout = () => {
         setToken(null);
         setUser(undefined)
+
         localStorage.removeItem("token");
         dialogs.success("Logout Successful", "You have been logged out successfully.");
+
     };
 
     const onUpdateUser = (updatedUser: IUser) => {
         setUser(updatedUser);
     };
+
 
     return (
         <AuthContext.Provider value={{

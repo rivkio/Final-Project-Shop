@@ -9,7 +9,7 @@ const AddToCartButton: React.FC<{ productId: string, productName: string, price:
     const { fetchCart } = useCart();
     const handleAddToCart = async () => {
         try {
-            await cart.addProductToCart(productId, 1, '2'); // לדוגמה, ניתן לשנות בהתאם לצורך
+            await cart.addProductToCart(productId, 1, size); // לדוגמה, ניתן לשנות בהתאם לצורך
             dialogs.showPopup(
                 'Product Added',
                 `<div style="display: flex; align-items: center;">
