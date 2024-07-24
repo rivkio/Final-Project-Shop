@@ -2,7 +2,7 @@
 
 import { Avatar, DarkThemeToggle, Dropdown, Navbar, Tooltip } from "flowbite-react";
 import { Link, useNavigate } from "react-router-dom";
-import { FiBox, FiUsers, FiTrendingUp, FiUser, FiShoppingCart } from "react-icons/fi";
+import { FiBox, FiUsers, FiTrendingUp, FiUser, FiShoppingCart, FiClipboard } from "react-icons/fi";
 import { useAuth } from "../../hooks/useAuth";
 import Search from "../Search/Search";
 import "./Navbar.scss";
@@ -41,6 +41,18 @@ const Nav = () => {
                         </div>
                     </Tooltip>
                 </Link>
+
+                {isLoggedIn && user && (
+                    <Link to="/orders" className="mr-4">
+                        <Tooltip
+                            content="View Orders"
+                            placement="top"
+                            className="text-sm bg-gray-800 text-white rounded px-2 py-1"
+                        >
+                            <FiClipboard size={24} className="text-gray hover:text-gray-300" />
+                        </Tooltip>
+                    </Link>
+                )}
 
                 {isLoggedIn && user?.isAdmin && (
                     <>
@@ -88,6 +100,7 @@ const Nav = () => {
                             <span className="block truncate text-sm font-medium">{user.email}</span>
                         </Dropdown.Header>
                         <Dropdown.Item onClick={() => navigate(`/users/${user._id}`)}>Update Profile</Dropdown.Item>
+                        <Dropdown.Item onClick={() => navigate("/orders")}>My Orders</Dropdown.Item>
                         <Dropdown.Item>Settings</Dropdown.Item>
                         <Dropdown.Item>Earnings</Dropdown.Item>
                         <Dropdown.Divider />

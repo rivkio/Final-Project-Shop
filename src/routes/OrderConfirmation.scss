@@ -64,3 +64,13 @@
         border-radius: 0.5rem;
     }
 }
+
+.cancel-order-link {
+    font-size: 16px;
+    color: #ef4444;
+    cursor: pointer;
+
+    &:hover {
+        color: #dc2626;
+    }
+}

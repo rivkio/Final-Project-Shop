@@ -76,11 +76,14 @@ const Cart = () => {
                 price: item.price, // הוספת price
             }));
 
-            await createOrder(orderProducts);
+
+            const response = await createOrder(orderProducts);
+            const orderId = response.data._id; // הנחה שמזהה ההזמנה נמצא בתשובה מהשרת
+
             dialogs.success("Order Successful", "Your order has been placed successfully.").then(async () => {
-                await cartService.clearCart(); // ניקוי העגלה לאחר ביצוע ההזמנה
-                fetchCart(); // רענון העגלה לאחר ניקוי
-                navigate('/order-confirmation'); // מעבר לעמוד אישור הזמנה
+                await cartService.clearCart(); // ניקוי העגלה
+                fetchCart(); // רענון העגלה
+                navigate(`/order-confirmation/${orderId}`); // נווט לעמוד האישור עם מזהה ההזמנה
             });
         } catch (error) {
             console.error('Failed to place order.', error);

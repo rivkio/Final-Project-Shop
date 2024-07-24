@@ -65,7 +65,10 @@ export const router = createBrowserRouter([
                 path: "/cart", element: <Cart />,
             },
             {
-                path: "/order-confirmation", element: < OrderConfirmation />
+                path: "/order-confirmation/:orderId", element: < OrderConfirmation />
+            },
+            {
+                path: "/orders", element: <OrderConfirmation />
             },
 
         ],
