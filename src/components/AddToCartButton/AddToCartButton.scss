@@ -1,14 +1,23 @@
 .add-to-cart-button {
     display: flex;
     align-items: center;
+    justify-content: center;
+    /* להבטיח שהטקסט והאייקון ממורכזים */
+    width: 100%;
+    /* להבטיח שהכפתור יתפוס את כל רוחב הכרטיסייה */
+    height: 50px;
+    /* הגדרת גובה קבוע */
+    max-height: 50px;
     border: 2px solid #1b1b1b;
     background-color: transparent;
     color: #1b1b1b;
-    padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
-    margin-bottom: 20px;
+    margin-top: auto;
+    /* להבטיח שהכפתור יהיה בחלק התחתון של הכרטיסייה */
+    box-sizing: border-box;
+    /* להבטיח שהפדינג והבדר נלקחים בחשבון בחישוב המימדים */
 
     &:hover {
         background-color: #1b1b1b;

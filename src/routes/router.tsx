@@ -14,6 +14,7 @@ import Users from "./Users";
 import AdminProducts from "./AdminProducts";
 import UpdeteProduct from "./UpdateProduct";
 import Cart from "./Cart";
+import OrderConfirmation from "./OrderConfirmation";
 
 
 
@@ -62,6 +63,9 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/cart", element: <Cart />,
+            },
+            {
+                path: "/order-confirmation", element: < OrderConfirmation />
             },
 
         ],
