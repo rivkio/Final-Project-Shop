@@ -92,7 +92,8 @@ const Nav = () => {
                         arrowIcon={false}
                         inline
                         label={
-                            <Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded />
+                            <Avatar alt="User settings" img="../../../public/img/rivki2.jpg" rounded />
+                            // https://flowbite.com/docs/images/people/profile-picture-5.jpg
                         }
                     >
                         <Dropdown.Header>
@@ -101,9 +102,6 @@ const Nav = () => {
                         </Dropdown.Header>
                         <Dropdown.Item onClick={() => navigate(`/users/${user._id}`)}>Update Profile</Dropdown.Item>
                         <Dropdown.Item onClick={() => navigate("/orders")}>My Orders</Dropdown.Item>
-                        <Dropdown.Item>Settings</Dropdown.Item>
-                        <Dropdown.Item>Earnings</Dropdown.Item>
-                        <Dropdown.Divider />
                         <Dropdown.Item onClick={() => { logout(); navigate("/"); }}> Sign out </Dropdown.Item>
                         {user.isAdmin && (
                             <>

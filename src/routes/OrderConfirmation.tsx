@@ -117,10 +117,10 @@ const OrderConfirmation = () => {
 
         return (
             <div className="order-confirmation-page">
-                <h1 className="order-title">Order Confirmation</h1>
+                <h1 className="order-title text-center">Order Confirmations</h1>
                 {orders.map(order => (
                     <div key={order._id} className="order-details-container">
-                        <h2 className="order-title">Order #{order._id}</h2>
+                        <h2 className="order-title2">Order #{order._id}</h2>
                         <div className="order-summary">
                             {order.products.map((product, index) => (
                                 <div key={`${product.productId}-${index}`} className="order-item">

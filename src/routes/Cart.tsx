@@ -72,10 +72,9 @@ const Cart = () => {
                 productId: item.productId,
                 quantity: item.quantity,
                 size: item.size,
-                productName: item.productName, // הוספת title
-                price: item.price, // הוספת price
+                productName: item.productName,
+                price: item.price,
             }));
-
 
             const response = await createOrder(orderProducts);
             const orderId = response.data._id; // הנחה שמזהה ההזמנה נמצא בתשובה מהשרת
@@ -130,7 +129,7 @@ const Cart = () => {
                 </div>
                 <div className="cart-items space-y-4">
                     {cart.items.map((item: ICartItem) => (
-                        <div className="cart-item flex justify-between items-center p-4 border rounded-lg shadow-sm" key={item.productId}>
+                        <div className="cart-item flex justify-between items-center p-4 border rounded-lg shadow-sm" key={item._id}>
                             <div className="flex items-center">
                                 <img src={item.image.url} className="w-20 h-20 object-cover rounded-lg mr-4" />
                                 <div>

@@ -22,6 +22,13 @@ const Products: FC = () => {
             .then(response => {
                 setProducts(response.data);
                 setLoading(false);
+
+                const initialSizes = response.data.reduce((acc: { [key: string]: string | null }, product: IProduct) => {
+                    acc[product._id] = product.quantity > 0 ? product.sizes[0] : null; // Use the first size as default if in stock
+                    return acc;
+                }, {});
+                setSelectedSizes(initialSizes);
+
             })
             .catch(error => {
                 setError(error);
@@ -38,12 +45,15 @@ const Products: FC = () => {
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error.message}</div>;
 
-    const handleSizeSelect = (productId: string, size: string) => {
+    const handleSizeSelect = (productId: string, size: string) => {      
         setSelectedSizes(prevSizes => ({
             ...prevSizes,
             [productId]: size,
         }));
     };
+
+
+   
 
     const handleAddToCart = async (productId: string) => {
         const size = selectedSizes[productId];
@@ -87,12 +97,13 @@ const Products: FC = () => {
                                             e.preventDefault();
                                             handleSizeSelect(product._id, size);
                                         }}
+                                        disabled={product.quantity === 0} // Disable the button if out of stock
                                     >
                                         {size}
                                     </button>
                                 ))}
                             </div>
-                            <p>{product.quantity > 0 ? 'In Stock' : 'Out of Stock'}</p>
+                            <p className={product.quantity > 0 ? '' : 'out-of-stock'}>{product.quantity > 0 ? 'In Stock' : 'Out of Stock'}</p>
                         </div>
                     </Link>
                     <AddToCartButton
@@ -102,6 +113,7 @@ const Products: FC = () => {
                         image={product.image.url || ""}
                         size={selectedSizes[product._id] || product.sizes[0]} // Default to first size if none selected
                         onAdd={() => console.log("Product added to cart")}
+                        disabled={product.quantity === 0}
                     />
                 </Card>
             ))}

@@ -49,7 +49,7 @@ const AdminProducts = () => {
                     <Table.HeadCell>Subtitle</Table.HeadCell>
                     <Table.HeadCell>Description</Table.HeadCell>
                     <Table.HeadCell>Price</Table.HeadCell>
-                    <Table.HeadCell>Size</Table.HeadCell>
+                    <Table.HeadCell>Sizes</Table.HeadCell>
                     <Table.HeadCell>Quantity</Table.HeadCell>
                     <Table.HeadCell>
                         <span className="sr-only">Edit</span>
@@ -65,7 +65,7 @@ const AdminProducts = () => {
                             <Table.Cell>{product.subtitle}</Table.Cell>
                             <Table.Cell>{product.productDescription}</Table.Cell>
                             <Table.Cell>{product.price}</Table.Cell>
-                            <Table.Cell>{product.size}</Table.Cell>
+                            <Table.Cell className='w-28'>{product.sizes.join(', ')}</Table.Cell>
                             <Table.Cell>{product.quantity}</Table.Cell>
                             <Table.Cell>
                                 <Link to={`/admin/products/${product._id}`} className="font-medium text-cyan-600 hover:underline dark:text-cyan-500">

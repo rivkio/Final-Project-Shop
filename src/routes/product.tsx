@@ -17,7 +17,9 @@ const Product = () => {
         getProductById(id || "")
             .then(res => {
                 setProduct(res.data);
-                setSelectedSize(res.data.sizes[0]); // להגדיר את המידה הראשונה כמידה ברירת מחדל
+                if (res.data.quantity > 0) {
+                    setSelectedSize(res.data.sizes[0]); // להגדיר את המידה הראשונה כמידה ברירת מחדל אם יש מלאי
+                }   
             })
             .catch(err => console.log(err));
     }, [id]);
@@ -73,6 +75,10 @@ const Product = () => {
                     ))}
                 </div>
 
+                {product.quantity === 0 && (
+                    <p className="out-of-stock">Out of Stock</p>
+                )}
+
                 <div className="buttons-container">
                     <AddToCartButton
                         productId={product._id}
@@ -81,8 +87,15 @@ const Product = () => {
                         price={product.price}
                         image={product.image.url || ""}
                         onAdd={() => console.log("Product added to cart")}
+                        disabled={product.quantity === 0}
                     />
-                    <button className="consult-expert-button" onClick={handleAddToCartAndRedirect}>Buy Now</button>
+                    <button
+                        className="consult-expert-button"
+                        onClick={handleAddToCartAndRedirect}
+                        disabled={product.quantity === 0}
+                    >
+                        Buy Now
+                    </button>
                 </div>
                 <Accordion>
                     <Accordion.Panel>

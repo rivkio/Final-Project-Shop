@@ -5,9 +5,12 @@ import './AddToCartButton.scss';
 import { useCart } from '../../hooks/useCart';
 import dialogs from '../../ui/dialogs';
 
-const AddToCartButton: React.FC<{ productId: string, productName: string, price: number, image: string, size: string, onAdd: () => void }> = ({ productId, productName, price, image, size, onAdd }) => {
+const AddToCartButton: React.FC<{ productId: string, productName: string, price: number, image: string, size: string, onAdd: () => void; disabled: boolean; }> = ({ productId, productName, price, image, size, onAdd, disabled }) => {
     const { fetchCart } = useCart();
     const handleAddToCart = async () => {
+
+        if (disabled) return; // Prevent adding to cart if disabled
+
         try {
             await cart.addProductToCart(productId, 1, size); // לדוגמה, ניתן לשנות בהתאם לצורך
             dialogs.showPopup(
@@ -24,14 +27,17 @@ const AddToCartButton: React.FC<{ productId: string, productName: string, price:
             fetchCart();
             onAdd();
 
-        } catch (error) {0
-            3
+        } catch (error) {
             console.error('Failed to add product to cart.', error);
         }
     };
 
     return (
-        <button onClick={handleAddToCart} className="add-to-cart-button">
+        <button 
+        onClick={handleAddToCart} 
+            className={`add-to-cart-button ${disabled ? 'disabled' : ''}`}
+            disabled={disabled}
+            >
             <FiShoppingCart size={24} />
             Add to cart
         </button>

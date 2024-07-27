@@ -38,6 +38,7 @@ export type ICartProduct = {
 
 
 export interface ICartItem {
+    _id: string;
     productId: string;
     quantity: number;
     productName: string;
