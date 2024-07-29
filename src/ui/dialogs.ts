@@ -1,4 +1,5 @@
 import Swal from "sweetalert2";
+import auth from "../services/auth";
 
 
 export const showSuccessDialog = (title: string, text: string) => {
@@ -49,10 +50,17 @@ export const showPopup = (title: string, html: string) => {
         icon: "success",
         position: "top-end",
         showConfirmButton: false,
-        width: 300,
-        timer: 2000,
+        width: 'auto',
+        timer: 3000,
         customClass: {
-            popup: 'custom-font-size'
+            popup: 'custom-font-size drawer-popup'
+        },
+        backdrop: false,
+        showClass: {
+            popup: 'animate__animated animate__slideInRight'
+        },
+        hideClass: {
+            popup: 'animate__animated animate__slideOutRight'
         }
     });
 };

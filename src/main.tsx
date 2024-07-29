@@ -8,10 +8,10 @@ import { CartProvider } from "./contexts/CartContext.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <AuthContextProvider>
-    <SearchProvider>
-      <CartProvider>
+    <CartProvider>
+      <SearchProvider>
         <RouterProvider router={router} />
-      </CartProvider>
-    </SearchProvider>
+      </SearchProvider>
+    </CartProvider>
   </AuthContextProvider>
 );

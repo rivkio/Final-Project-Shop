@@ -12,9 +12,9 @@ import CreateProduct from "./CreateProduct";
 import UpdateUser from "./UpdateUser";
 import Users from "./Users";
 import AdminProducts from "./AdminProducts";
-import UpdeteProduct from "./UpdateProduct";
 import Cart from "./Cart";
 import OrderConfirmation from "./OrderConfirmation";
+import EditProduct from "./UpdateProduct";
 
 
 
@@ -35,17 +35,17 @@ export const router = createBrowserRouter([
                         <Profile />
                     </ProtectedRouteUser>
             },
-            { path: "/products/:id", element: <Product />},
+            { path: "/products/:id", element: <Product /> },
             {
                 path: "/admin/create-product", element:
                     <ProtectedRouteAdmin>
                         <CreateProduct />
                     </ProtectedRouteAdmin>
             },
-             {
+            {
                 path: "/admin/products/:id", element:
                     <ProtectedRouteAdmin>
-                        <UpdeteProduct />
+                        <EditProduct />
                     </ProtectedRouteAdmin>
             },
             {

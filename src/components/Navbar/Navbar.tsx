@@ -6,7 +6,8 @@ import { FiBox, FiUsers, FiTrendingUp, FiUser, FiShoppingCart, FiClipboard } fro
 import { useAuth } from "../../hooks/useAuth";
 import Search from "../Search/Search";
 import "./Navbar.scss";
-import { useCart } from "../../hooks/useCart";
+import useCart from "../../hooks/useCart";
+
 
 
 const Nav = () => {
@@ -16,7 +17,7 @@ const Nav = () => {
 
     return (
         <Navbar fluid rounded>
-            <Navbar.Brand href="https://flowbite-react.com">
+            <Navbar.Brand href="#">
                 <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Rivki Ozeri</span>
             </Navbar.Brand>
 
@@ -92,7 +93,7 @@ const Nav = () => {
                         arrowIcon={false}
                         inline
                         label={
-                            <Avatar alt="User settings" img="../../../public/img/rivki2.jpg" rounded />
+                            <Avatar alt="User settings" img="../../../img/rivki2.jpg" rounded />
                             // https://flowbite.com/docs/images/people/profile-picture-5.jpg
                         }
                     >
@@ -139,7 +140,6 @@ const Nav = () => {
                     Home
                 </Navbar.Link>
                 <Navbar.Link href="#">About</Navbar.Link>
-                {isLoggedIn && <Navbar.Link href="/profile">Profile</Navbar.Link>}
                 <Navbar.Link href="#">Contact</Navbar.Link>
             </Navbar.Collapse>
         </Navbar>

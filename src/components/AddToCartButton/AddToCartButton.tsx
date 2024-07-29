@@ -1,47 +1,72 @@
-import React from 'react';
-import { FiShoppingCart } from 'react-icons/fi';
-import cart from '../../services/cart';
-import './AddToCartButton.scss';
-import { useCart } from '../../hooks/useCart';
+
+
+
+// const AddToCartButton: React.FC<{ productId, productName: string, price: number, image: string, size: string, onAdd: () => void; disabled: boolean; }> = ({ productId, productName, price, image, size, onAdd, disabled }) => {
+//     const { fetchCart } = useCart();
+
+
+    // return (
+    //     <button 
+    //     onClick={handleAddToCart} 
+    //         className={`add-to-cart-button ${disabled ? 'disabled' : ''}`}
+    //         disabled={disabled}
+    //         >
+    //         <FiShoppingCart size={24} />
+    //         Add to cart
+    //     </button>
+    // );
+
+import { FC, useState } from 'react';
+import useCart from '../../hooks/useCart';
 import dialogs from '../../ui/dialogs';
+import './AddToCartButton.scss';
+import { AddToCartButtonProps, IVariant } from '../../@types/productType';
 
-const AddToCartButton: React.FC<{ productId: string, productName: string, price: number, image: string, size: string, onAdd: () => void; disabled: boolean; }> = ({ productId, productName, price, image, size, onAdd, disabled }) => {
-    const { fetchCart } = useCart();
+const AddToCartButton: FC<AddToCartButtonProps> = ({ productId, variants, productName, image }) => {
+    const [selectedVariant, setSelectedVariant] = useState<IVariant | null>(variants[0] || null);
+    const { addToCart } = useCart();
+
     const handleAddToCart = async () => {
-
-        if (disabled) return; // Prevent adding to cart if disabled
-
-        try {
-            await cart.addProductToCart(productId, 1, size); // לדוגמה, ניתן לשנות בהתאם לצורך
-            dialogs.showPopup(
-                'Product Added',
-                `<div style="display: flex; align-items: center;">
-                    <img src="${image}" alt="${productName}" style="width: 50px; height: 50px; object-fit: cover; margin-right: 10px;" />
-                    <div>
-                        <p>${productName} has been added to your cart.</p>
-                        <p>Size: $${size}</p>
-                        <p>Price: $${price.toFixed(2)}</p>
-                    </div>
-                </div>`
-            );
-            fetchCart();
-            onAdd();
-
-        } catch (error) {
-            console.error('Failed to add product to cart.', error);
+        if (selectedVariant) {
+            console.log("Adding product to cart:", selectedVariant);
+            try {
+                await addToCart(productId, selectedVariant._id, 1, selectedVariant.size, selectedVariant.price);
+                dialogs.success("Product Added", `${productName}Product added to cart`);
+            } catch (error) {
+                console.error("Failed to add product to cart:", error);
+            }
+        } else {
+            console.error("No variant selected");
         }
     };
 
     return (
-        <button 
-        onClick={handleAddToCart} 
-            className={`add-to-cart-button ${disabled ? 'disabled' : ''}`}
-            disabled={disabled}
-            >
-            <FiShoppingCart size={24} />
-            Add to cart
-        </button>
+        <div className="add-to-cart-container">
+            <div className="size-buttons-container">
+                {variants.map(variant => (
+                    <button
+                        key={variant._id}
+                        className={`size-button ${selectedVariant && selectedVariant._id === variant._id ? 'selected' : ''}`}
+                        onClick={() => setSelectedVariant(variant)}
+                    >
+                        {variant.size}
+                    </button>
+                ))}
+                <div className="price-container">
+                    <span className="original-price" style={{ marginRight: '10px' }}>
+                        ${(selectedVariant.price * 1.2).toFixed(2)}
+                    </span>
+                    <div className="discounted-price">
+                        ${selectedVariant.price.toFixed(2)}
+                    </div>
+                </div>
+            </div>
+            <button className="add-to-cart-button" onClick={handleAddToCart} disabled={!selectedVariant}>
+                Add to Cart
+            </button>
+        </div>
     );
 };
 
 export default AddToCartButton;
+

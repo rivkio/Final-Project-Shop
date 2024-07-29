@@ -24,10 +24,6 @@ export type RegisterUser = {
     phone: string;
     email: string;
     password: string;
-    // image?: {
-    //     url: string;
-    //     alt: string;
-    // };
     address: {
         state?: string;
         country: string;

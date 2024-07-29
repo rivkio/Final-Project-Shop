@@ -31,9 +31,9 @@ export const deleteProductById = (id: string) => {
 };
 
 //update product
-export const updateProduct = (id: string, data: FormData) => {
+export const updateProduct = (id: string, product: FormData) => {
     const url = `${baseUrl}/${id}`;
-    return axios.put(url, data, {
+    return axios.put(url, product, {
         headers: {
             "x-auth-token": localStorage.getItem("token"),
             "Content-Type": "multipart/form-data",

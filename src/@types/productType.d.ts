@@ -1,26 +1,32 @@
 export type IImage = {
     url?: string;
-    // alt: string;
+};
+
+//types for variant
+export type IVariant = {
+    _id?: string;
+    size: string;
+    quantity: number;
+    price: number;
 };
 
 export type IProductInput = {
     productName: string;
     subtitle: string;
     productDescription: string;
-    price: number;
-    color: string;
-    sizes: string[];
-    model: string;
     image: IImage;
     alt: string;
-    category: string;
-    quantity: number;
+    sizes: string[];
+    barcode: number;
+    variants: IVariant[];
+    // price: number;
+    // color: string;
+    // model: string;
+    // category: string;
 };
-
 
 export type IProduct = IProductInput & {
     _id: string;
-    barcode: number;
     createdAt: Date;
     shoppingCart: string[];
     quantity: number;
@@ -29,21 +35,21 @@ export type IProduct = IProductInput & {
 };
 
 
-export type ICartProduct = {
-    productId: string;
-    title: string;
-    price: number;
-    size: string;
-};
+// export type ICartProduct = {
+//     productId: string;
+//     title: string;
+//     price: number;
+//     size: string;
+// };
 
 
 export interface ICartItem {
-    _id: string;
     productId: string;
-    quantity: number;
+    variantId: string;
     productName: string;
     price: number;
     size: string;
+    quantity: number;
     image: IImage;
 };
 
@@ -61,6 +67,7 @@ export interface CartContextProps {
     cart: ICartWithTotals | null;
     setCart: Dispatch<SetStateAction<ICartWithTotals | null>>;
     fetchCart: () => void;
+    addToCart: (productId: string, variantId: string, quantity: number, size: string, price: number) => Promise<void>;
 };
 
 export type IOrderProduct = {
@@ -85,4 +92,18 @@ export type IOrder = {
 export interface SalesByDateQuery {
     startDate: string;
     endDate: string;
-}
+};
+
+interface AddToCartButtonProps {
+    productId: string;
+    variants: IVariant[];
+    productName: string;
+    image: IImage;
+};
+
+// // טיפוס עבור עדכון פרטי משתמש
+// export type updateUserType = {
+//     name: IName;
+//     phone: string;
+//     address: IAddress;
+// };
