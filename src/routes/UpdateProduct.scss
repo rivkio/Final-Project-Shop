@@ -56,4 +56,33 @@
             }
         }
     }
-}
+};
+
+.removeButton {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 5px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+};
+
+.removeButton:hover {
+    background-color: #007bff;
+};
+
+.add-variant-button {
+    background-color: #1f2937;
+    color: white;
+    border: none;
+    padding: 6px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+};
+
+.add-variant-button:hover {
+    background-color: #374151;
+};

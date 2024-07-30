@@ -4,7 +4,7 @@ import dialogs from '../../ui/dialogs';
 import './AddToCartButton.scss';
 import { AddToCartButtonProps, IVariant } from '../../@types/productType';
 
-const AddToCartButton: FC<AddToCartButtonProps> = ({ productId, variants, productName, image }) => {
+const AddToCartButton: FC<AddToCartButtonProps> = ({ productId, variants, productName, image, disabled }) => {
     const [selectedVariant, setSelectedVariant] = useState<IVariant | null>(variants[0] || null);
     const { addToCart } = useCart();
 
@@ -48,7 +48,10 @@ const AddToCartButton: FC<AddToCartButtonProps> = ({ productId, variants, produc
                 </div>
 
             </div>
-            <button className="add-to-cart-button" onClick={handleAddToCart} disabled={!selectedVariant}>
+            <button 
+            className="add-to-cart-button" 
+            onClick={handleAddToCart} 
+                disabled={selectedVariant.quantity === 0}>
                 Add to Cart
             </button>
         </div>

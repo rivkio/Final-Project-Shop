@@ -67,10 +67,11 @@
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     background-color: #ffffff;
 
+
     @media (min-width: 768px) {
-            flex-direction: row;
-            justify-content: space-between;
-        }
+        flex-direction: row;
+        justify-content: space-between;
+    }
 }
 
 .dark .cart-item {
@@ -114,6 +115,7 @@
     width: 100%;
 }
 
+
 .select-quantity select option {
     background-color: #ffffff;
     color: #151617;
@@ -144,7 +146,7 @@
 .cart-summary {
     width: 100%;
     padding: 16px;
-    background-color: #f9f9fd;
+    background-color: #f3f4f6;
     border-radius: 0.5rem;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     max-height: 230px;
@@ -215,14 +217,6 @@
     color: #ffffff;
     border-radius: 0.5rem;
     cursor: pointer;
-
-    &:hover {
-        background-color: #2563eb;
-    }
-}
-
-.dark .checkout-button {
-    background-color: #1d4ed8;
 
     &:hover {
         background-color: #2563eb;

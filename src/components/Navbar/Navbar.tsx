@@ -7,6 +7,7 @@ import { useAuth } from "../../hooks/useAuth";
 import Search from "../Search/Search";
 import "./Navbar.scss";
 import useCart from "../../hooks/useCart";
+import UserAvatar from "../UserAvatar";
 
 
 
@@ -93,8 +94,11 @@ const Nav = () => {
                         arrowIcon={false}
                         inline
                         label={
-                            <Avatar alt="User settings" img="../../../img/rivki2.jpg" rounded />
-                            // https://flowbite.com/docs/images/people/profile-picture-5.jpg
+                            user.isAdmin ? (
+                                <Avatar alt="User settings" img="../../../img/rivki2.jpg" rounded className="ml-2" />
+                            ) : (
+                                <UserAvatar firstName={user.name.first} lastName={user.name.last} />
+                            )
                         }
                     >
                         <Dropdown.Header>

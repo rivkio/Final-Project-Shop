@@ -61,6 +61,7 @@ const Product = () => {
                         variants={product.variants}
                         productName={product.productName}
                         image={product.image}
+                        disabled={product.quantity === 0}
                     />
                     <button className="consult-expert-button" onClick={handleAddToCartAndRedirect}>Buy Now</button>
                 </div>

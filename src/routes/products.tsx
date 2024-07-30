@@ -70,6 +70,7 @@ const Products: FC = () => {
                             variants={product.variants}
                             productName={product.productName}
                             image={product.image}
+                            disabled={product.quantity === 0}
                         />
                     </Card>
                 ))

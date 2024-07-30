@@ -5,9 +5,9 @@ const baseUrl = 'http://localhost:8080/api/v1';
 const analyticsUrl = `${baseUrl}/analytics`;
 
 
-export const getSalesByDate = (startDate: Date, endDate: Date) => {
+export const getSalesByDate = (startDate: String, endDate: String) => {
     return axios.get(`${analyticsUrl}/sales-by-date`, {
-        params: { startDate: startDate.toISOString(), endDate: endDate.toISOString() },
+        params: { startDate, endDate },
         headers: {
             "x-auth-token": localStorage.getItem("token"),
         }

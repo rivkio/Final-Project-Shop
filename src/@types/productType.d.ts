@@ -105,6 +105,7 @@ interface AddToCartButtonProps {
     variants: IVariant[];
     productName: string;
     image: IImage;
+    disabled: boolean;
 };
 
 export interface DateRangePickerProps {
