@@ -202,18 +202,24 @@ import useCart from '../hooks/useCart';
 import cartService from '../services/cart';
 import { createOrder } from '../services/order';
 import { ICartItem } from '../@types/productType';
+import { useSearch } from '../hooks/useSearch';
 
 const Cart = () => {
     const { cart, fetchCart } = useCart();
     const { token } = useAuth();
     const navigate = useNavigate();
     const [quantities, setQuantities] = useState<{ [variantId: string]: number }>({});
+    const { searchTerm } = useSearch();
 
     useEffect(() => {
         if (token) {
             fetchCart(); // Fetch cart items when token changes (e.g., on login)
         }
     }, [token]);
+
+    const filteredCart = (cart?.items || []).filter(item =>
+        item.productName.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     const handleRemoveItem = async (variantId: string) => {
         try {
@@ -306,7 +312,7 @@ const Cart = () => {
                     <Link to="#" onClick={handleClearCart} className="clear-cart-link text-red-500 hover:underline">Clear Cart</Link>
                 </div>
                 <div className="cart-items space-y-4">
-                    {cart.items.map((item: ICartItem) => (
+                    {filteredCart.map((item: ICartItem) => (
                         <div className="cart-item flex flex-col p-4 border rounded-lg shadow-sm" key={item.productId + item.variantId}>
                             <div className="flex items-center mb-4">
                                 <img src={item.image.url} className="w-20 h-20 object-cover rounded-lg mr-4" />

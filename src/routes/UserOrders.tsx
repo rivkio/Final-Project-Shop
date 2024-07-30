@@ -7,11 +7,13 @@ import { FiX } from 'react-icons/fi';
 import dialogs from '../ui/dialogs';
 import { Tooltip } from 'flowbite-react';
 import orderService from '../services/order';
+import { useSearch } from '../hooks/useSearch';
 
 
 const UserOrders = () => {
     const [orders, setOrders] = useState<IOrder[]>([]);
     const { user } = useAuth();
+    const { searchTerm } = useSearch();
 
     useEffect(() => {
         const fetchOrders = async () => {
@@ -27,6 +29,10 @@ const UserOrders = () => {
 
         fetchOrders();
     }, [user]);
+
+    const filteredUserOrders = orders.filter(userOrders =>
+        userOrders.orderNumber.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     const handleCancelOrder = async (event: MouseEvent<HTMLAnchorElement>, orderId: string) => {
         event.preventDefault();
@@ -63,7 +69,7 @@ const UserOrders = () => {
     return (
         <div className="order-confirmation-page">
             <h1 className="order-title">Order Confirmation</h1>
-            {orders.map(order => (
+            {filteredUserOrders.map(order => (
                 <div key={order._id} className="order-details-container">
                     <h2 className="order-title">Order #{order.orderNumber}</h2>
                     <div className="order-summary">
