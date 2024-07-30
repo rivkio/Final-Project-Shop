@@ -101,6 +101,13 @@ interface AddToCartButtonProps {
     image: IImage;
 };
 
+export interface DateRangePickerProps {
+    startDate: Date | null;
+    endDate: Date | null;
+    onStartDateChange: (date: Date | null) => void;
+    onEndDateChange: (date: Date | null) => void;
+}
+
 // // טיפוס עבור עדכון פרטי משתמש
 // export type updateUserType = {
 //     name: IName;

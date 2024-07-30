@@ -1,5 +1,4 @@
 import Swal from "sweetalert2";
-import auth from "../services/auth";
 
 
 export const showSuccessDialog = (title: string, text: string) => {
