@@ -2,10 +2,12 @@
 import { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import salesService from '../services/analytics';
+import analyticsService from '../services/analytics';
 import { Line } from 'react-chartjs-2';
 import { Chart, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import './SalesPage.scss';
+import { Link } from 'react-router-dom';
+
 
 // רישום הרכיבים הדרושים ל-Chart.js
 Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
@@ -19,7 +21,7 @@ const SalesPage = () => {
         const fetchSalesData = async () => {
             if (startDate && endDate) {
                 try {
-                    const response = await salesService.getSalesByDate(startDate, endDate);
+                    const response = await analyticsService.getSalesByDate(startDate, endDate);
                     setSalesData(response.data.salesByDate);
                 } catch (err) {
                     console.error('Error fetching sales data:', err);
@@ -104,6 +106,11 @@ const SalesPage = () => {
             </div>
             <div className="chart-container">
                 <Line data={chartData} options={chartOptions} />
+            </div>
+            <div className="text-center mt-6">
+                <Link to="/admin/orders" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    View All Orders
+                </Link>
             </div>
         </div>
     );

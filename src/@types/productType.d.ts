@@ -80,12 +80,18 @@ export type IOrderProduct = {
 
 export type IOrder = {
     _id: string;
+    orderId: string;
     userId: string;
     products: IOrderProduct[];
     totalAmount: number;
     status: string;
-    createdAt: Date;
+    createdAt: string; // Assuming it's a string, convert it if necessary
     orderNumber: string;
+};
+
+export type OrderResponse = {
+    count: number;
+    orders: IOrder[];
 };
 
 
