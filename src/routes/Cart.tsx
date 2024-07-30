@@ -239,7 +239,6 @@ const Cart = () => {
     };
 
     const handleQuantityChange = async (variantId: string, newQuantity: number) => {
-        console.log('מעודכן כמות עבור variantId:', variantId, 'ל:', newQuantity); // בדוק מה מודפס כאן
         if (!variantId) {
             console.error('variantId is undefined');
             return;
@@ -248,7 +247,7 @@ const Cart = () => {
             await cartService.updateProductQuantity(variantId, newQuantity);
             fetchCart(); // עדכן את הסל כדי לשקף את השינויים
         } catch (error) {
-            console.error('שגיאה בעדכון כמות המוצר:', error.response?.data || error.message);
+            console.error('Failed to update product quantity.', error);
         }
     };
 

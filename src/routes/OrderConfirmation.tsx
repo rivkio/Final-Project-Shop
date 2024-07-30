@@ -275,7 +275,7 @@ const OrderConfirmation = () => {
             <h1 className="order-title">Order Confirmation</h1>
             {orders.map(order => (
                 <div key={order._id} className="order-details-container">
-                    <h2 className="order-title">Order #{order._id}</h2>
+                    <h2 className="order-title">Order #{order.orderNumber}</h2>
                     <div className="order-summary">
                         {order.products.map((product, index) => (
                             <div key={`${product.productId}-${index}`} className="order-item">
