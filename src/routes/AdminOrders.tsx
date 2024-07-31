@@ -1,7 +1,5 @@
-import { Table, Tooltip } from 'flowbite-react';
+import { Table } from 'flowbite-react';
 import { useEffect, useState } from 'react';
-import { FiPlus } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
 import dialogs from '../ui/dialogs';
 import { useSearch } from '../hooks/useSearch';
 import Search from '../components/Search/Search';
@@ -54,7 +52,7 @@ const AdminOrders = () => {
 
     return (
         <div className="overflow-x-auto bg-white dark:border-gray-700 dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-            <h2 className='text-5xl font-extralight text-center mb-6'>Orders</h2>
+            <h2 className='text-4xl text-gray-800 mb-1 text-center mt-2'>Orders</h2>
             <div className="flex flex-col mb-4">
                 <Search />
             </div>

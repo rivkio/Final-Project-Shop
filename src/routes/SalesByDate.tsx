@@ -4,7 +4,7 @@ import { Line } from 'react-chartjs-2';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
-import './SalesPage.scss';
+import './SalesByDate.scss';
 import analyticsService from '../services/analytics';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
@@ -126,7 +126,7 @@ const SalesChart = () => {
 
     return (
         <div className="sales-chart-container">
-            <h2 className="chart-title">Sales by Date</h2>
+            <h2 className="text-4xl text-gray-800 mb-12 text-center mt-2">Sales by Date</h2>
             <div className="date-picker-container">
                 <DatePicker
                     selected={startDate}
