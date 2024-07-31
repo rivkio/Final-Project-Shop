@@ -25,7 +25,14 @@ const AddToCartButton: FC<AddToCartButtonProps> = ({ productId, variants, produc
     return (
         <div className="add-to-cart-container">
             <p> {selectedVariant.quantity > 0 ? 'In Stock' : 'Out of Stock'}</p>
-
+            <div className="price-container" style={{ marginBottom: '20px', marginTop: '15px' }}>
+                <span className="original-price" style={{ marginRight: '10px' }}>
+                    ${(selectedVariant?.price * 1.2).toFixed(2)}
+                </span>
+                <span className="discounted-price">
+                    ${selectedVariant?.price.toFixed(2)}
+                </span>
+            </div>
             <div className="size-buttons-container">
                 {variants.map(variant => (
                     <button
@@ -36,17 +43,6 @@ const AddToCartButton: FC<AddToCartButtonProps> = ({ productId, variants, produc
                         {variant.size}
                     </button>
                 ))}
-
-                <div className="price-container">
-                    <span className="original-price" style={{ marginRight: '10px' }}>
-                        ${(selectedVariant.price * 1.2).toFixed(2)}
-                    </span>
-                    <div className="discounted-price">
-                        ${selectedVariant.price.toFixed(2)}
-                    </div>
-
-                </div>
-
             </div>
             <button 
             className="add-to-cart-button" 
