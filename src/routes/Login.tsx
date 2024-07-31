@@ -1,11 +1,12 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import dialogs from "../ui/dialogs";
+
 import './CreateCard.scss';
 import { ILogin } from "../@types/@types";
 import { useAuth } from "../hooks/useAuth";
 import { FC } from "react";
 import patterns from "../validation/patterns";
+import dialogs from "../ui/dialogs";
 
 
 

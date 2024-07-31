@@ -19,6 +19,8 @@ import UserOrders from "./UserOrders";
 import SalesPage from "./SalesByDate";
 import AdminOrders from "./AdminOrders";
 import AdminDashboard from "./AdminDashboard";
+import Contact from "./contact";
+import AdminMessages from "./AdminMessage";
 
 
 
@@ -81,6 +83,8 @@ export const router = createBrowserRouter([
             {
                 path: "/admin/dashboard", element: <AdminDashboard />
             },
+            { path: "/contact", element: <Contact /> },
+            { path: "/admin/messages", element: <AdminMessages /> },
 
 
         ],

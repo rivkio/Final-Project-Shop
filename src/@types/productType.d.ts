@@ -113,7 +113,15 @@ export interface DateRangePickerProps {
     endDate: Date | null;
     onStartDateChange: (date: Date | null) => void;
     onEndDateChange: (date: Date | null) => void;
-}
+};
+
+export type IMessage = {
+    _id?: string;
+    fullName: string;
+    email: string;
+    message: string;
+    createdAt?: Date;
+};
 
 // // טיפוס עבור עדכון פרטי משתמש
 // export type updateUserType = {
