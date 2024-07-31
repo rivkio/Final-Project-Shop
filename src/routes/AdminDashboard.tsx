@@ -5,6 +5,7 @@ import Users from "./Users";
 import AdminOrders from "./AdminOrders";
 import SalesChart from "./SalesByDate";
 import './AdminDashboard.scss';
+import AdminMessages from "./AdminMessage";
 
 const AdminDashboard = () => {
     return (
@@ -21,9 +22,13 @@ const AdminDashboard = () => {
             <Tabs.Item title="Analytics" icon={FiTrendingUp} className="tabs-item">
                 <SalesChart />
             </Tabs.Item>
+            <Tabs.Item title="Leads" icon={FiTrendingUp} className="tabs-item">
+                <AdminMessages />
+            </Tabs.Item>
         </Tabs>
     );
 };
 
 export default AdminDashboard;
+
 
