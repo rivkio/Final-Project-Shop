@@ -39,10 +39,10 @@ const AdminProducts = () => {
 
     return (
         <div className="overflow-x-auto bg-white dark:border-gray-700 dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-            <h2 className='text-4xl text-gray-800 mb-0 text-center mt-0'>Products</h2>
+            <h2 className='text-4xl text-gray-800 dark:text-gray-400 mb-0 text-center mt-0'>Products</h2>
             <div className="flex justify-end mb-4">
                 <Tooltip content="Add Product" placement="top" className="text-sm bg-gray-800 text-white rounded px-2 py-1">
-                    <Link to="/admin/create-product" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-3 text-center inline-flex items-center me-8 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    <Link to="/admin/create-product" className="text-white bg-green-300 hover:bg-green-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-3 text-center inline-flex items-center me-8 dark:bg-green-300 dark:hover:bg-green-300/60 dark:focus:ring-green-800">
                         <FiPlus size={20} />
                         <span className="sr-only">Add Product</span>
                     </Link>
@@ -85,7 +85,7 @@ const AdminProducts = () => {
                                 {product.variants.reduce((total, variant) => total + variant.quantity, 0)}
                             </Table.Cell>
                             <Table.Cell>
-                                <Link to={`/admin/products/${product._id}`} className="font-medium text-cyan-600 hover:underline dark:text-cyan-500">
+                                <Link to={`/admin/products/${product._id}`} className="font-medium text-emerald-500 hover:underline dark:text-green-300">
                                     Edit
                                 </Link>
                             </Table.Cell>

@@ -20,7 +20,7 @@ import UserOrders from "./UserOrders";
 // import AdminOrders from "./AdminOrders";
 import AdminDashboard from "./AdminDashboard";
 import Contact from "./contact";
-import About from "../components/About/About";
+import About from "./About";
 // import AdminMessages from "./AdminMessage";
 
 

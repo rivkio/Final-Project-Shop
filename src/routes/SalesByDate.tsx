@@ -126,7 +126,8 @@ const SalesChart = () => {
 
     return (
         <div className="sales-chart-container">
-            <h2 className="title-sales text-2xl text-gray-800 mb-3 md:mb-12 text-center mt-2 md:text-4xl">Sales by Date</h2>
+            <h2 className="title-sales text-4xl dark:text-4xl text-gray-800 dark:text-slate-300 mb-3 md:mb-14 text-center mt-7 md:text-4xl">
+                Sales by Date</h2>
             <div className="date-picker-container">
                 <DatePicker
                     selected={startDate}
@@ -155,7 +156,7 @@ const SalesChart = () => {
             ) : error ? (
                 <p>{error}</p>
             ) : salesData.labels && salesData.labels.length > 0 ? (
-                        <div className="chart-wrapper">
+                        <div className="chart-wrapper dark:bg-gray-300/70">
                     <Line data={salesData} options={chartOptions} />
                 </div>
             ) : (

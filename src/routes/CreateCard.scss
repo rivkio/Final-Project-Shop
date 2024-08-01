@@ -5,6 +5,7 @@
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     font-family: Arial, sans-serif;
+    background-color: #2fb394;
 }
 
 .create-card-container h2 {
@@ -49,8 +50,9 @@
 .create-card-container button[type="submit"] {
     width: 100%;
     padding: 12px;
-    background-color: #007bff;
+    background-color: #5ee9c8;
     color: white;
+    font-weight: bold;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -61,7 +63,7 @@
 /* Hover and focus styles for the button */
 .create-card-container button[type="submit"]:hover,
 .create-card-container button[type="submit"]:focus {
-    background-color: #0056b3;
+    background-color: #4bbea3;
 }
 
 /* Styling for password visibility toggle button */

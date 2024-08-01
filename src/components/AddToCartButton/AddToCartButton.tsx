@@ -24,7 +24,9 @@ const AddToCartButton: FC<AddToCartButtonProps> = ({ productId, variants, produc
 
     return (
         <div className="add-to-cart-container">
-            <p> {selectedVariant.quantity > 0 ? 'In Stock' : 'Out of Stock'}</p>
+            <p className={selectedVariant.quantity > 0 ? '' : 'out-of-stock'}>
+            {selectedVariant.quantity > 0 ? 'In Stock' : 'Out of Stock'}
+                </p>
             <div className="price-container" style={{ marginBottom: '20px', marginTop: '15px' }}>
                 <span className="original-price" style={{ marginRight: '10px' }}>
                     ${(selectedVariant?.price * 1.2).toFixed(2)}

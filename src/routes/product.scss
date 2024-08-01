@@ -9,6 +9,12 @@
     flex-direction: column;
 }
 
+@media (min-width: 768px) {
+    .product-page {
+        flex-direction: row;
+    }
+}
+
 .product-image-container {
     flex: 1;
     display: flex;
@@ -72,6 +78,10 @@
     margin-bottom: 20px;
 }
 
+.dark .accordion-content p {
+    color: #fff;
+}
+
 .product-price-container {
     display: flex;
     align-items: baseline;
@@ -101,7 +111,7 @@
 
 .buttons-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 10px;
     margin-bottom: 20px;
 }
@@ -124,6 +134,12 @@
     background-color: #0a0b0d;
     color: white;
     margin-top: 168px;
+}
+
+@media (max-width: 768px) {
+    .consult-expert-button {
+        margin-top: 0;
+    }
 }
 
 .consult-expert-button:hover {
@@ -153,21 +169,15 @@
     }
 }
 
-.size-buttons-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 10px;
-}
-
-.size-button {
-    padding: 10px 20px;
-    border: 1px solid #4b5563;
-    background-color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    text-align: center;
-}
+// .size-button {
+//     flex: 1;
+//     padding: 10px 20px;
+//     border: 1px solid #4b5563;
+//     background-color: #fff;
+//     cursor: pointer;
+//     transition: background-color 0.3s, color 0.3s;
+//     text-align: center;
+// }
 
 .size-button.selected {
     background-color: #9f9b9b;
@@ -183,17 +193,48 @@
         flex-direction: row;
     }
 
+    // .size-buttons-container {
+    //     flex-direction: row;
+    // }
+
+    // .size-button {
+    //     flex: initial;
+    // }
+}
+
+.size-buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+    width: 70%;
+}
+
+@media (min-width: 768px) {
+    .size-buttons-container {
+        width: 100%;
+    }
+}
+
+.size-button {
+    padding: 10px 20px;
+    border: 1px solid #4b5563;
+    background-color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
     .buttons-container {
         flex-direction: row;
     }
 
-    .size-buttons-container {
-        flex-direction: row;
+    .consult-expert-button,
+    .add-to-cart-button {
+        flex: 1;
     }
 
-    .size-button {
-        flex: initial;
-    }
 }
 
 .dark body {
@@ -238,12 +279,12 @@
 }
 
 .dark .consult-expert-button {
-    background-color: #09286c;
+    background-color: #54a18f;
     color: white;
 }
 
 .dark .consult-expert-button:hover {
-    background-color: #1d4ed8;
+    background-color: #62bca7;
 }
 
 .dark .add-to-cart-button {
@@ -293,7 +334,3 @@
     margin-bottom: 20px;
 
 }
-
-
-
-

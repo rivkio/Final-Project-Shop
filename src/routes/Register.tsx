@@ -289,7 +289,7 @@ const Register = () => {
                 <button disabled={!isValid} type="submit">Register</button>
                 <div className="mt-4 text-center">
                     <span className="text-sm text-gray-700 dark:text-gray-300">Already have an account? </span>
-                    <Link className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500" to="/login">Login</Link>
+                    <Link className="text-sm font-medium text-green-500 hover:underline dark:text-green-400" to="/login">Login</Link>
                 </div>
             </form>
             {/* <DevTool control={control} /> */}

@@ -36,11 +36,12 @@
     flex-direction: column;
     gap: 8px;
     margin-top: 16px;
+    // flex-wrap: wrap;
 
     .order-item {
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-start;
         padding: 16px;
         border: 1px solid #e5e7eb;
         border-radius: 0.5rem;
@@ -68,6 +69,12 @@
         padding: 16px;
         background-color: #f1f5f9;
         border-radius: 0.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .order-item {
+        flex-direction: column;
     }
 }
 

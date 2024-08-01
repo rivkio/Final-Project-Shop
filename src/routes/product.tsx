@@ -68,13 +68,13 @@ const Product = () => {
                 <Accordion>
                     <Accordion.Panel>
                         <Accordion.Title>Description</Accordion.Title>
-                        <Accordion.Content>
+                        <Accordion.Content className="accordion-content">
                             <p>{product.productDescription}</p>
                         </Accordion.Content>
                     </Accordion.Panel>
                     <Accordion.Panel>
                         <Accordion.Title>Shipping Info</Accordion.Title>
-                        <Accordion.Content>
+                        <Accordion.Content className="accordion-content">
                             <p>Ships by: <strong>Wednesday, July 24</strong></p>
                             <p>Free Fast Shipping</p>
                             <p>Free Overnight Shipping, Hassle-Free Returns</p>

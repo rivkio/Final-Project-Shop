@@ -16,6 +16,11 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.dark .sales-chart-container {
+    background-color: #586377;
+    color: #fff;
+}
+
 .chart-title {
     font-size: 2rem;
     color: #333;
@@ -34,6 +39,11 @@
         height: 100px; // adjust height for mobile devices
         flex-direction: column; // stack the date pickers vertically
         align-items: center; // center the date pickers
+    }
+
+    @media (min-width: 450px) {
+        flex-direction: row;
+        width: 100%;
     }
 }
 
@@ -55,9 +65,5 @@
 @media (min-width: 768px) {
     .chart-wrapper {
         height: 600px;
-    }
-
-    .title-sales{
-        font-size: 50px;
     }
 }

@@ -86,7 +86,7 @@ const Contact = () => {
                 <button disabled={!isValid} type="submit">Send</button>
                 <div className="mt-4 text-center">
                     <span className="text-sm text-gray-300">Already have an account? </span>
-                    <Link className="text-sm font-medium text-blue-400 hover:underline" to="/login">Login</Link>
+                    <Link className="text-sm font-medium text-green-300 hover:underline" to="/login">Login</Link>
                 </div>
             </form>
         </div>

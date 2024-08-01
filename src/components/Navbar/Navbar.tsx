@@ -1,8 +1,8 @@
 "use client";
 
 import { Avatar, DarkThemeToggle, Dropdown, Navbar, Tooltip } from "flowbite-react";
-import { Link, useNavigate } from "react-router-dom";
-import { FiBox, FiUsers, FiTrendingUp, FiUser, FiShoppingCart, FiSettings } from "react-icons/fi";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { FiUser, FiShoppingCart, FiSettings } from "react-icons/fi";
 import { useAuth } from "../../hooks/useAuth";
 import Search from "../Search/Search";
 import "./Navbar.scss";
@@ -10,11 +10,13 @@ import useCart from "../../hooks/useCart";
 import UserAvatar from "../UserAvatar";
 
 
-
 const Nav = () => {
     const { isLoggedIn, user, logout } = useAuth();
     const navigate = useNavigate();
     const { cart } = useCart();
+    const location = useLocation();
+
+    const isActive = (path: string) => location.pathname === path;
 
     return (
         <Navbar fluid rounded>
@@ -23,20 +25,20 @@ const Nav = () => {
             </Navbar.Brand>
 
             <div className="flex md:order-2 items-center">
-                <div className="mr-5">
+                <div className="">
                     <Search />
                 </div>
 
-                <Link to="/cart" className="mr-4">
+                <Link to="/cart" className="ml-2">
                     <Tooltip
                         content="View Cart"
                         placement="top"
-                        className="text-sm bg-gray-700 text-white rounded px-2 py-1"
+                        className="text-xs bg-gray-700 text-white rounded px-2 py-1"
                     >
                         <div className="relative">
                             <FiShoppingCart size={20} className={cart && cart.totalQuantity > 0 ? "text-red-500" : "text-gray-300"} />
                             {cart && cart.totalQuantity > 0 && (
-                                <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full px-2 text-xs">
+                                <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full px-1 text-xs">
                                     {cart.totalQuantity}
                                 </span>
                             )}
@@ -44,73 +46,31 @@ const Nav = () => {
                     </Tooltip>
                 </Link>
 
-                {/* {isLoggedIn && user && (
-                    <Link to="/orders" className="mr-5">
-                        <Tooltip
-                            content="View Orders"
-                            placement="top"
-                            className="text-sm bg-gray-700 text-white rounded px-2 py-1"
-                        >
-                            <FiClipboard size={20} className="text-gray hover:text-gray-300" />
-                        </Tooltip>
-                    </Link>
-                )} */}
 
-                {/* {isLoggedIn && user?.isAdmin && (
+                {isLoggedIn && user?.isAdmin && (
                     <>
-                        <Link to="/admin/products" className="mr-4 hidden md:block">
-                        <Tooltip
-                            content="Manage Products"
-                            placement="top"
-                            className="text-sm bg-gray-800 text-white rounded px-2 py-1"
-                        >
-                            <FiBox size={20} className="text-gray hover:text-gray-300" />
-                        </Tooltip>
-                    </Link>
-                        <Link to="/admin/users" className="mr-5 hidden md:block">
+                        <Link to="/admin/dashboard" className="hidden md:block ml-2">
                             <Tooltip
-                                content="Manage Users"
+                                content="Manage Shop"
                                 placement="top"
-                                className="text-sm bg-gray-700 text-white rounded px-2 py-1"
+                                className="text-xs bg-gray-700 text-white rounded px-2 py-1"
                             >
-                                <FiUsers size={20} className="text-gray hover:text-gray-300" />
-                            </Tooltip>
-                        </Link>
-                        <Link to="/admin/analytics" className="mr-8 hidden md:block">
-                            <Tooltip
-                                content="Analytics"
-                                placement="top"
-                                className="text-sm bg-gray-700 text-white rounded px-2 py-1"
-                            >
-                                <FiTrendingUp size={20} className="text-gray hover:text-gray-300" />
+                                <FiSettings size={20} className="text-gray ml-2 hover:text-gray-300" />
                             </Tooltip>
                         </Link>
                     </>
-                )} */}
-
-
-                {isLoggedIn && user?.isAdmin && (
-                    <Link to="/admin/dashboard">
-                        <Tooltip
-                            content="Manage Shop"
-                            placement="top"
-                            className="text-sm bg-gray-700 text-white rounded px-2 py-1"
-                        >
-                            <FiSettings size={20} className="text-gray hover:text-gray-300" />
-                        </Tooltip>
-                    </Link>
                 )}
 
 
-                {isLoggedIn && user && (
+                {isLoggedIn && (
                     <Dropdown
                         arrowIcon={false}
                         inline
                         label={
                             user.isAdmin ? (
-                                <Avatar alt="User settings" img="../../../img/rivki2.jpg" rounded className="ml-2" />
+                                <Avatar alt="User settings" img="../../../img/rivki2.jpg" rounded className="mr-2 ml-4 flex" />
                             ) : (
-                                <UserAvatar firstName={user.name.first} lastName={user.name.last}/>
+                                <UserAvatar firstName={user.name.first} lastName={user.name.last} />
                             )
                         }
                     >
@@ -120,29 +80,30 @@ const Nav = () => {
                         </Dropdown.Header>
                         <Dropdown.Item onClick={() => navigate(`/users/${user._id}`)}>Update Profile</Dropdown.Item>
                         <Dropdown.Item onClick={() => navigate("/orders")}>My Orders</Dropdown.Item>
-                        <Dropdown.Item onClick={() => { logout(); navigate("/"); }}> Sign out </Dropdown.Item>
+                        <Dropdown.Divider />
                         {user.isAdmin && (
                             <>
-                                <Dropdown.Divider className="block md:hidden" />
-                                <Dropdown.Item onClick={() => navigate("/admin/products")} className="block md:hidden">
-                                    <FiBox size={20} className="mr-2" /> Manage Products
+                                <Dropdown.Item onClick={() => navigate("/admin/dashboard")}>
+                                    Manage Shop
                                 </Dropdown.Item>
-                                <Dropdown.Item onClick={() => navigate("/admin/users")} className="block md:hidden">
-                                    <FiUsers size={20} className="mr-2" /> Manage Users
-                                </Dropdown.Item>
-                                <Dropdown.Item onClick={() => navigate("/admin/analytics")} className="block md:hidden">
-                                    <FiTrendingUp size={20} className="mr-2" /> Analytics
-                                </Dropdown.Item>
+                                <Dropdown.Divider />
                             </>
                         )}
+                        {/* <Dropdown.Item as="button">
+                            <div className="flex items-center" onClick={() => document.documentElement.classList.toggle('dark')}>
+                                <DarkThemeToggle />
+                                <span className="ml-2">Mode</span>
+                            </div>
+                        </Dropdown.Item> */}
+                        <Dropdown.Divider />
+                        <Dropdown.Item onClick={() => { logout(); navigate("/"); }}> Sign out </Dropdown.Item>
                     </Dropdown>
-
                 )}
 
 
                 {!isLoggedIn && (
                     <Tooltip content="Login" placement="bottom" className="text-xs bg-gray-700 text-white rounded px-1 py-1">
-                        <Link to="/login" className="mr-4 flex items-center">
+                        <Link to="/login" className="ml-3 flex items-center">
                             <FiUser size={20} className="text-gray hover:text-gray-300" />
                         </Link>
                     </Tooltip>
@@ -150,14 +111,18 @@ const Nav = () => {
 
 
                 <Navbar.Toggle />
-                <DarkThemeToggle className="ml-2" />
+                <DarkThemeToggle/>
             </div>
             <Navbar.Collapse>
-                <Navbar.Link href="/" active>
+                <Navbar.Link href="/" className={`text-xs ${isActive("/") ? "font-bold text-green-600" : ""}`}>
                     Home
                 </Navbar.Link>
-                <Navbar.Link href="/about">About</Navbar.Link>
-                <Navbar.Link href="/contact">Contact</Navbar.Link>
+                <Navbar.Link href="/about" className={`text-xs ${isActive("/about") ? "font-bold text-green-600" : ""}`}>
+                    About
+                </Navbar.Link>
+                <Navbar.Link href="/contact" className={`text-xs ${isActive("/contact") ? "font-bold text-green-600" : ""}`}>
+                    Contact
+                </Navbar.Link>
             </Navbar.Collapse>
         </Navbar>
     );

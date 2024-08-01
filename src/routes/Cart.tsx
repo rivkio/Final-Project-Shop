@@ -95,9 +95,9 @@ const Cart = () => {
     if (!cart || !cart.items || cart.items.length === 0) {
         return (
             <div className="empty-cart flex flex-col items-center justify-center">
-                <h2 className="text-2xl font-semibold mb-4">Your cart is empty</h2>
-                <p className="text-lg mb-4">Should we start shopping?</p>
-                <Link to="/" className="back-to-shopping text-blue-800 hover:underline flex items-center">
+                <h2 className="text-2xl font-semibold mb-4 dark:text-green-300 text-green-400/80">Your cart is empty</h2>
+                <p className="text-lg mb-4 dark:text-green-300 text-green-400/90">Should we start shopping?</p>
+                <Link to="/" className="back-to-shopping text-green-300 dark:text-white hover:underline flex items-center">
                     <FiArrowLeft className="mr-2" />
                     Back to Shopping
                 </Link>
@@ -108,12 +108,12 @@ const Cart = () => {
     return (
         <div className="cart-page flex flex-col md:flex-row">
             <div className="cart-items-container w-full md:w-3/4 p-4">
-                <Link to="/" className="back-to-shopping text-blue-800 hover:underline mb-4 flex items-center">
+                <Link to="/" className="back-to-shopping text-green-300 dark:text-green-400 hover:underline mb-4 flex items-center">
                     <FiArrowLeft className="mr-2" />
                     Back to Shopping
                 </Link>
                 <div className="flex justify-between items-center mb-4 border-b pb-4">
-                    <h1 className="cart-title text-2xl font-semibold">Your Shopping Cart</h1>
+                    <h1 className="cart-title text-2xl font-semibold dark:text-green-400">Your Shopping Cart</h1>
                     <Link to="#" onClick={handleClearCart} className="clear-cart-link text-red-500 hover:underline">Clear Cart</Link>
                 </div>
                 <div className="cart-items space-y-4">
@@ -124,7 +124,7 @@ const Cart = () => {
                                 <div className="flex items-center mb-4">
                                     <img src={item.image.url} className="w-20 h-20 object-cover rounded-lg mr-4" />
                                     <div>
-                                        <Link to={`/products/${item.productId}`} className="item-title text-lg font-medium text-blue-500 hover:underline">{item.productName}</Link>
+                                        <Link to={`/products/${item.productId}`} className="item-title text-lg text-green-400 font-bold hover:underline">{item.productName}</Link>
                                     </div>
                                 </div>
                                 <div className="variant flex justify-between items-center mb-4">

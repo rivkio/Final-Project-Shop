@@ -32,7 +32,7 @@ const Login: FC = () => {
     } = useForm<ILogin>();
 
     return (
-        <div className="create-card-container bg-blue-950 text-white dark:bg-slate-600">
+        <div className="create-card-container text-white dark:bg-slate-600">
             <form noValidate onSubmit={handleSubmit(onLogin)}>
                 {/* email */}
                 <section>
