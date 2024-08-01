@@ -2,7 +2,7 @@
 
 import { Avatar, DarkThemeToggle, Dropdown, Navbar, Tooltip } from "flowbite-react";
 import { Link, useNavigate } from "react-router-dom";
-import { FiBox, FiUsers, FiTrendingUp, FiUser, FiShoppingCart, FiClipboard } from "react-icons/fi";
+import { FiBox, FiUsers, FiTrendingUp, FiUser, FiShoppingCart, FiSettings } from "react-icons/fi";
 import { useAuth } from "../../hooks/useAuth";
 import Search from "../Search/Search";
 import "./Navbar.scss";
@@ -44,7 +44,7 @@ const Nav = () => {
                     </Tooltip>
                 </Link>
 
-                {isLoggedIn && user && (
+                {/* {isLoggedIn && user && (
                     <Link to="/orders" className="mr-5">
                         <Tooltip
                             content="View Orders"
@@ -54,9 +54,9 @@ const Nav = () => {
                             <FiClipboard size={20} className="text-gray hover:text-gray-300" />
                         </Tooltip>
                     </Link>
-                )}
+                )} */}
 
-                {isLoggedIn && user?.isAdmin && (
+                {/* {isLoggedIn && user?.isAdmin && (
                     <>
                         <Link to="/admin/products" className="mr-4 hidden md:block">
                         <Tooltip
@@ -86,6 +86,19 @@ const Nav = () => {
                             </Tooltip>
                         </Link>
                     </>
+                )} */}
+
+
+                {isLoggedIn && user?.isAdmin && (
+                    <Link to="/admin/dashboard">
+                        <Tooltip
+                            content="Manage Shop"
+                            placement="top"
+                            className="text-sm bg-gray-700 text-white rounded px-2 py-1"
+                        >
+                            <FiSettings size={20} className="text-gray hover:text-gray-300" />
+                        </Tooltip>
+                    </Link>
                 )}
 
 
@@ -97,7 +110,7 @@ const Nav = () => {
                             user.isAdmin ? (
                                 <Avatar alt="User settings" img="../../../img/rivki2.jpg" rounded className="ml-2" />
                             ) : (
-                                <UserAvatar firstName={user.name.first} lastName={user.name.last} />
+                                <UserAvatar firstName={user.name.first} lastName={user.name.last}/>
                             )
                         }
                     >
@@ -143,8 +156,8 @@ const Nav = () => {
                 <Navbar.Link href="/" active>
                     Home
                 </Navbar.Link>
-                <Navbar.Link href="#">About</Navbar.Link>
-                <Navbar.Link href="#">Contact</Navbar.Link>
+                <Navbar.Link href="/about">About</Navbar.Link>
+                <Navbar.Link href="/contact">Contact</Navbar.Link>
             </Navbar.Collapse>
         </Navbar>
     );

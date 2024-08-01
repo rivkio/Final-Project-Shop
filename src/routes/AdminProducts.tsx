@@ -55,7 +55,7 @@ const AdminProducts = () => {
                     <Table.HeadCell className="w-1/6">Title</Table.HeadCell>
                     <Table.HeadCell className="w-1/6">Subtitle</Table.HeadCell>
                     <Table.HeadCell className="w-1/6">Description</Table.HeadCell>
-                    <Table.HeadCell className="w-1/3">Variants</Table.HeadCell>
+                    <Table.HeadCell className="w-1/5">Variants</Table.HeadCell>
                     <Table.HeadCell className="w-1/10">Total Quantity</Table.HeadCell>
                     <Table.HeadCell>
                         <span className="sr-only w-1/8">Edit</span>

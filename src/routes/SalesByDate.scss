@@ -28,6 +28,13 @@
     justify-content: center;
     gap: 10px;
     margin-bottom: 20px;
+
+    @media (max-width: 768px) {
+        width: 90%; // adjust width for mobile devices
+        height: 100px; // adjust height for mobile devices
+        flex-direction: column; // stack the date pickers vertically
+        align-items: center; // center the date pickers
+    }
 }
 
 .date-picker {
@@ -48,5 +55,9 @@
 @media (min-width: 768px) {
     .chart-wrapper {
         height: 600px;
+    }
+
+    .title-sales{
+        font-size: 50px;
     }
 }

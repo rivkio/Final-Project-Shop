@@ -1,10 +1,13 @@
-import { Table } from 'flowbite-react';
+import { Table, Tooltip } from 'flowbite-react';
 import { useEffect, useState } from 'react';
 import dialogs from '../ui/dialogs';
 import { useSearch } from '../hooks/useSearch';
-import Search from '../components/Search/Search';
 import { IOrder } from '../@types/productType';
 import { getAllOrders, updateOrderStatus } from '../services/analytics';
+import orderService from '../services/order';
+import { Link } from 'react-router-dom';
+import { FiTrash2 } from 'react-icons/fi';
+
 
 
 const statusOptions = [
@@ -50,12 +53,29 @@ const AdminOrders = () => {
             .catch(err => setError(err));
     };
 
+    const handleCancelOrder = async (event: React.MouseEvent<HTMLAnchorElement>, orderId: string) => {
+        event.preventDefault();
+        const result = await dialogs.confirm("Cancel Order", "Are you sure you want to cancel the order?");
+        if (result.isConfirmed) {
+            try {
+                const response = await orderService.cancelOrder(orderId);
+                console.log('Order cancelled:', response);
+                dialogs.success("Order Cancelled", "Your order has been cancelled successfully.");
+
+                setOrders(orders.map(order =>
+                    order.orderId === orderId ? { ...order, status: "cancelled" } : order
+                ));
+
+            } catch (error) {
+                console.error('Error cancelling order:', error);
+                dialogs.error("Error", "Failed to cancel the order.");
+            }
+        }
+    };
+
     return (
         <div className="overflow-x-auto bg-white dark:border-gray-700 dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-            <h2 className='text-4xl text-gray-800 mb-1 text-center mt-2'>Orders</h2>
-            <div className="flex flex-col mb-4">
-                <Search />
-            </div>
+            <h2 className='text-4xl text-gray-800 mb-12 text-center mt-2'>Orders</h2>
             {error && <div className="text-red-500 text-center mb-4">{error.message}
             </div>}
 
@@ -79,23 +99,45 @@ const AdminOrders = () => {
                                     value={order.status}
                                     onChange={(e) => handleStatusChange(order.orderId, e.target.value)}
                                     className="border rounded px-2 py-1"
+                                    disabled={order.status === 'cancelled'} // Disable if cancelled
                                 >
                                     {statusOptions.map(status => (
-                                        <option key={status} value={status}>{status.charAt(0).toUpperCase() + status.slice(1)}</option>
+                                        <option key={status} value={status}>
+                                            {status.charAt(0).toUpperCase() + status.slice(1)}
+                                        </option>
                                     ))}
                                 </select>
                             </Table.Cell>
                             <Table.Cell>{new Date(order.createdAt).toLocaleDateString()}</Table.Cell>
                             <Table.Cell className="whitespace-nowrap w-1/3"> {/* הוספתי מחלקת w-1/3 להרחבת העמודה */}
                                 <div className="flex flex-wrap space-x-2">
-                                {order.products.map((product, index) => (
-                                    <div key={index} className="bg-gray-100 dark:bg-gray-700 p-2 rounded mb-2">
-                                        <p className="text-sm">Title: {product.productName}</p>
-                                        <p className="text-sm">Size: {product.size}</p>
-                                        <p className="text-sm">Quantity: {product.quantity}</p>
-                                        <p className="text-sm">Price: ${product.price}</p>
-                                    </div>
-                                ))}
+                                    {order.products.map((product, index) => (
+                                        <div key={index} className="bg-gray-100 dark:bg-gray-700 p-2 rounded mb-2">
+                                            <p className="text-sm">Title: {product.productName}</p>
+                                            <p className="text-sm">Size: {product.size}</p>
+                                            <p className="text-sm">Quantity: {product.quantity}</p>
+                                            <p className="text-sm">Price: ${product.price}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </Table.Cell>
+                            <Table.Cell>
+                                <div className="summary-total">
+                                    {order.status !== 'cancelled' ? (
+                                        <Link to="#" onClick={(event) => handleCancelOrder(event, order.orderId)} className="cancel-order-link text-red-500 hover:underline">
+                                            <Tooltip
+                                                content="Cancel Order"
+                                                placement="top"
+                                                className="text-sm bg-gray-800 text-white rounded px-2 py-1"
+                                            >
+                                                <FiTrash2 className="inline-block mr-2 text-2xl" />
+                                            </Tooltip>
+                                        </Link>
+                                    ) : (order.status === 'cancelled' ? (
+                                        <div className="order-cancelled-note text-red-500 mt-4">
+                                            <span>Cancelled Order</span>
+                                        </div>
+                                    ) : null)}
                                 </div>
                             </Table.Cell>
                         </Table.Row>

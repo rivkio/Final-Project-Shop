@@ -10,17 +10,18 @@ import ProtectedRouteUser from "./ProtectedRouteUser";
 import ProtectedRouteAdmin from "./ProtectedRouteAdmin";
 import CreateProduct from "./CreateProduct";
 import UpdateUser from "./UpdateUser";
-import Users from "./Users";
-import AdminProducts from "./AdminProducts";
+// import Users from "./Users";
+// import AdminProducts from "./AdminProducts";
 import Cart from "./Cart";
 import OrderConfirmation from "./OrderConfirmation";
 import EditProduct from "./UpdateProduct";
 import UserOrders from "./UserOrders";
-import SalesPage from "./SalesByDate";
-import AdminOrders from "./AdminOrders";
+// import SalesPage from "./SalesByDate";
+// import AdminOrders from "./AdminOrders";
 import AdminDashboard from "./AdminDashboard";
 import Contact from "./contact";
-import AdminMessages from "./AdminMessage";
+import About from "../components/About/About";
+// import AdminMessages from "./AdminMessage";
 
 
 
@@ -54,13 +55,13 @@ export const router = createBrowserRouter([
                         <EditProduct />
                     </ProtectedRouteAdmin>
             },
-            {
-                path: "/admin/products", element:
-                    <ProtectedRouteAdmin>
-                        <AdminProducts />
-                    </ProtectedRouteAdmin>
-            },
-            { path: "/admin/users", element: <Users /> },
+            // {
+            //     path: "/admin/products", element:
+            //         <ProtectedRouteAdmin>
+            //             <AdminProducts />
+            //         </ProtectedRouteAdmin>
+            // },
+            // { path: "/admin/users", element: <Users /> },
             {
                 path: "/users/:id", element:
                     <ProtectedRouteUser>
@@ -76,15 +77,16 @@ export const router = createBrowserRouter([
             {
                 path: "/orders", element: <UserOrders />
             },
-            {
-                path: "/admin/analytics", element: < SalesPage />
-            },
-            { path: "/admin/orders", element: <AdminOrders /> },
+            // {
+            //     path: "/admin/analytics", element: < SalesPage />
+            // },
+            // { path: "/admin/orders", element: <AdminOrders /> },
             {
                 path: "/admin/dashboard", element: <AdminDashboard />
             },
             { path: "/contact", element: <Contact /> },
-            { path: "/admin/messages", element: <AdminMessages /> },
+            // { path: "/admin/messages", element: <AdminMessages /> },
+            { path: "/about", element: <About /> },
 
 
         ],
