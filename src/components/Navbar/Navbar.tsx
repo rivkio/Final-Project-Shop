@@ -20,7 +20,7 @@ const Nav = () => {
 
     return (
         <Navbar fluid rounded>
-            <Navbar.Brand href="#">
+            <Navbar.Brand href="/">
                 <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Rivki Ozeri</span>
             </Navbar.Brand>
 
@@ -70,7 +70,7 @@ const Nav = () => {
                             user.isAdmin ? (
                                 <Avatar alt="User settings" img="../../../img/rivki2.jpg" rounded className="mr-2 ml-4 flex" />
                             ) : (
-                                <UserAvatar firstName={user.name.first} lastName={user.name.last} />
+                                <UserAvatar firstName={user.name.first} lastName={user.name.last}/>
                             )
                         }
                     >
@@ -103,7 +103,7 @@ const Nav = () => {
 
                 {!isLoggedIn && (
                     <Tooltip content="Login" placement="bottom" className="text-xs bg-gray-700 text-white rounded px-1 py-1">
-                        <Link to="/login" className="ml-3 flex items-center">
+                        <Link to="/login" className="ml-3 mr-1 flex items-center">
                             <FiUser size={20} className="text-gray hover:text-gray-300" />
                         </Link>
                     </Tooltip>

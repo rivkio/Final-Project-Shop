@@ -6,6 +6,7 @@ import { Accordion } from 'flowbite-react';
 import { getProductById } from '../services/products';
 import { IProduct } from '../@types/productType';
 import cartService from '../services/cart';
+import { format } from 'date-fns';
 
 
 const Product = () => {
@@ -38,6 +39,12 @@ const Product = () => {
         } catch (error) {
             console.error('Failed to add product to cart.', error);
         }
+    };
+
+    const getEstimatedArrivalDate = (): string => {
+        const deliveryDate = new Date();
+        deliveryDate.setDate(deliveryDate.getDate() + 7); // להוסיף 7 ימים
+        return format(deliveryDate, 'PPP'); // פורמט התאריך
     };
 
     return (
@@ -75,8 +82,8 @@ const Product = () => {
                     <Accordion.Panel>
                         <Accordion.Title>Shipping Info</Accordion.Title>
                         <Accordion.Content className="accordion-content">
-                            <p>Ships by: <strong>Wednesday, July 24</strong></p>
                             <p>Free Fast Shipping</p>
+                            <p>Estimated arrival date: <strong>{getEstimatedArrivalDate()}</strong></p>
                             <p>Free Overnight Shipping, Hassle-Free Returns</p>
                         </Accordion.Content>
                     </Accordion.Panel>

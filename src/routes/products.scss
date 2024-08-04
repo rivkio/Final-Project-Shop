@@ -15,6 +15,25 @@
     }
 }
 
+.main-title {
+    text-align: center;
+    color: #000;
+    font-size: 50px;
+    font-weight: 500;
+    text-shadow: 2px 2px 4px #53a793;
+    margin-bottom: 30px;
+    margin-top: 40px;
+
+    @media (max-width: 768px) {
+        font-size: 45px;
+    }
+}
+
+.dark .main-title {
+    color: #e2e8f0;
+    text-shadow: 2px 2px 4px #53a793;
+}
+
 .product-card {
     border: 1px solid #e2e8f0;
     border-radius: 0.375rem;

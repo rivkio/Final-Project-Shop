@@ -50,31 +50,36 @@ const Products: FC = () => {
 
 
     return (
-        <div className="product-list-container">
-            {filteredProducts.length === 0 ? (
-                <p>No products found</p>
-            ) : (
-                filteredProducts.map(product => (
-                    <Card key={product._id} className="product-card">
-                        <Link to={`/products/${product._id}`} className="product-link">
-                            <img src={product.image.url} alt={product.alt} className="w-full h-48 object-cover rounded-t-lg" />
-                            <div className="product-info">
-                                <h5 className="text-xl font-bold">{product.productName}</h5>
-                                <h6 className="text-md font-semibold">{product.subtitle}</h6>
-                                <p>{product.productDescription}</p>
-                            </div>
-                        </Link>
+        <div>
+            <h1 className='main-title'>Our Products</h1>
 
-                        <AddToCartButton
-                            productId={product._id}
-                            variants={product.variants}
-                            productName={product.productName}
-                            image={product.image}
-                            disabled={product.quantity === 0}
-                        />
-                    </Card>
-                ))
-            )}
+            <div className="product-list-container">
+
+                {filteredProducts.length === 0 ? (
+                    <p>No products found</p>
+                ) : (
+                    filteredProducts.map(product => (
+                        <Card key={product._id} className="product-card">
+                            <Link to={`/products/${product._id}`} className="product-link">
+                                <img src={product.image.url} alt={product.alt} className="w-full h-48 object-cover rounded-t-lg" />
+                                <div className="product-info">
+                                    <h5 className="text-xl font-bold">{product.productName}</h5>
+                                    <h6 className="text-md font-semibold">{product.subtitle}</h6>
+                                    <p>{product.productDescription}</p>
+                                </div>
+                            </Link>
+
+                            <AddToCartButton
+                                productId={product._id}
+                                variants={product.variants}
+                                productName={product.productName}
+                                image={product.image}
+                                disabled={product.quantity === 0}
+                            />
+                        </Card>
+                    ))
+                )}
+            </div>
         </div>
     );
 };
@@ -84,19 +89,19 @@ export default Products;
 
 
 
-    // const handleAddToCart = async (productId: string) => {
-    //     const size = selectedSizes[productId];
-    //     if (!size) {
-    //         alert('Please select a size.');
-    //         return;
-    //     }
-    //     try {
-    //         await cartService.addProductToCart(productId, 1, size);
-    //         alert('Product added to cart!');
-    //     } catch (error) {
-    //         console.error('Failed to add product to cart.', error);
-    //     }
-    // };
+// const handleAddToCart = async (productId: string) => {
+//     const size = selectedSizes[productId];
+//     if (!size) {
+//         alert('Please select a size.');
+//         return;
+//     }
+//     try {
+//         await cartService.addProductToCart(productId, 1, size);
+//         alert('Product added to cart!');
+//     } catch (error) {
+//         console.error('Failed to add product to cart.', error);
+//     }
+// };
 
 //     return (
 //         <div className="product-list-container">
