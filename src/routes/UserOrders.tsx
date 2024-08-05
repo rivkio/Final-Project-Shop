@@ -1,4 +1,4 @@
-import { useEffect, useState, MouseEvent } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { IOrder } from '../@types/productType';
 import './OrderConfirmation.scss';
@@ -34,10 +34,10 @@ const UserOrders = () => {
 
     if (orders.length === 0) {
         return (
-            <div className="empty-orders-page flex flex-col items-center justify-center">
+            <div className="empty-orders-page flex flex-col items-center justify-center text-green-500">
                 <h2 className="text-2xl font-semibold mb-4">Your orders list is empty</h2>
                 <p className="text-lg mb-4">Should we start shopping?</p>
-                <Link to="/" className="back-to-shopping text-blue-800 hover:underline flex items-center">
+                <Link to="/" className="back-to-shopping text-green-400 hover:underline flex items-center">
                     <FiX className="mr-2" />
                     Back to Shopping
                 </Link>

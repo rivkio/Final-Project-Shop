@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 1.5rem;
-    padding: 20px;
+    padding: 30px;
     max-width: 90%;
     margin: 0 auto;
 
@@ -26,6 +26,8 @@
 
     @media (max-width: 768px) {
         font-size: 45px;
+        margin-top: 0;
+        margin-bottom: 0;
     }
 }
 
@@ -42,12 +44,14 @@
     background-color: #fff;
     color: #314944;
 
+
     &:hover {
         transform: translateY(-5px);
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
     h5 {
+        margin-top: 0.8rem;
         margin-bottom: 0.5rem;
     }
 

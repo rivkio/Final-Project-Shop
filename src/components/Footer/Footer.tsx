@@ -5,13 +5,13 @@ function Footer() {
     return (
         <footer className="footer dark:bg-[#374151]">
             <div className="full-footer-content">
-                <span className="text-sm md:p-6 p-4 sm:text-center dark:text-gray-200 text-[#1a6e5a] font-medium">
+                <span className="text-sm md:p-8 p-4 sm:text-center dark:text-gray-200 text-[#1a6e5a] font-medium">
                     2024 All Rights Reserved To Rivki Ozeri ©
                 </span>
-                <ul className="flex flex-wrap items-center text-sm font-medium mr-3 text-[#1a6e5a] dark:text-slate-200">
-                    <li><a href="/" className="hover:underline dark:text-gray-200">Home</a></li>
-                    <li><a href="/about" className="hover:underline dark:text-gray-200">About</a></li>
-                    <li><a href="/contact" className="hover:underline dark:text-gray-200">Contact</a></li>
+                <ul className="flex flex-wrap items-center text-base font-medium mr-5 text-[#1a6e5a] dark:text-slate-200">
+                    <li><a href="/" className="hover:underline dark:text-gray-200"><FiHome/></a></li>
+                    <li><a href="/about" className="hover:underline dark:text-gray-200"><FiAlertCircle /></a></li>
+                    <li><a href="/contact" className="hover:underline dark:text-gray-200"><FiMail /></a></li>
                 </ul>
             </div>
             <div className="mobile-footer-content">

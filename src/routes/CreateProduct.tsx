@@ -80,14 +80,6 @@ const CreateProduct = () => {
                     <input placeholder="ProductDescription" {...register("productDescription", { required: "Description is required" })} />
                     {errors.productDescription && <p className="text-red-500">{errors.productDescription.message}</p>}
                 </section>
-                {/* <section>
-                    <input placeholder="Price" type="number" step="0.01" {...register('price', { required: 'Price is required' })} />
-                    <span className="error-message">{errors.price && errors.price.message}</span>
-                </section>
-                <section>
-                    <input placeholder="Color" {...register('color', { required: 'Color is required' })} />
-                    {errors.color && <p className="text-red-500">{errors.color.message}</p>}
-                </section> */}
                 <section>
                     <input
                         type="file"
@@ -105,22 +97,6 @@ const CreateProduct = () => {
                     <input placeholder="Image Description" {...register("alt", { required: "Image description is required" })} />
                     {errors.alt && <p className="text-red-500">{errors.alt.message}</p>}
                 </section>
-                {/* <section>
-                    <input placeholder="Sizes (comma separated, e.g., 2,4,6,8)" {...register('sizes', { required: 'Sizes are required' })} />
-                    {errors.sizes && <p className="text-red-500">{errors.sizes.message}</p>}
-                </section> */}
-                {/* <section>
-                    <input placeholder="Model" {...register('model', { required: 'Model is required' })} />
-                    {errors.model && <p className="text-red-500">{errors.model.message}</p>}
-                </section>
-                <section>
-                    <input placeholder="Category" {...register('category', { required: 'Category is required' })} />
-                    {errors.category && <p className="text-red-500">{errors.category.message}</p>}
-                </section>
-                <section>
-                    <input placeholder="Quantity" type="number" {...register('quantity', { required: 'Quantity is required' })} />
-                </section> */}
-
                 <section>
                     <h3 className="mb-2">Variants:</h3>
                     {fields.map((variant, index) => (

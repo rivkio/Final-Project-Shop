@@ -61,10 +61,10 @@ const Products: FC = () => {
                     filteredProducts.map(product => (
                         <Card key={product._id} className="product-card">
                             <Link to={`/products/${product._id}`} className="product-link">
-                                <img src={product.image.url} alt={product.alt} className="w-full h-48 object-cover rounded-t-lg" />
+                                <img src={product.image.url} alt={product.alt} className="w-full max-h-85 object-cover rounded-t-lg" />
                                 <div className="product-info">
                                     <h5 className="text-xl font-bold">{product.productName}</h5>
-                                    <h6 className="text-md font-semibold">{product.subtitle}</h6>
+                                    <h6 className="text-md mb-3 font-semibold">{product.subtitle}</h6>
                                     <p>{product.productDescription}</p>
                                 </div>
                             </Link>

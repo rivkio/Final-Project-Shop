@@ -89,12 +89,6 @@ const Nav = () => {
                                 <Dropdown.Divider />
                             </>
                         )}
-                        {/* <Dropdown.Item as="button">
-                            <div className="flex items-center" onClick={() => document.documentElement.classList.toggle('dark')}>
-                                <DarkThemeToggle />
-                                <span className="ml-2">Mode</span>
-                            </div>
-                        </Dropdown.Item> */}
                         <Dropdown.Divider />
                         <Dropdown.Item onClick={() => { logout(); navigate("/"); }}> Sign out </Dropdown.Item>
                     </Dropdown>
@@ -114,13 +108,13 @@ const Nav = () => {
                 <DarkThemeToggle/>
             </div>
             <Navbar.Collapse>
-                <Navbar.Link href="/" className={`text-xs ${isActive("/") ? "font-bold text-green-600" : ""}`}>
+                <Navbar.Link href="/" className={`text-xs custom-navbar-link ${isActive("/") ? "font-bold text-green-600" : ""}`}>
                     Home
                 </Navbar.Link>
-                <Navbar.Link href="/about" className={`text-xs ${isActive("/about") ? "font-bold text-green-600" : ""}`}>
+                <Navbar.Link href="/about" className={`text-xs custom-navbar-link ${isActive("/about") ? "font-bold text-green-600" : ""}`}>
                     About
                 </Navbar.Link>
-                <Navbar.Link href="/contact" className={`text-xs ${isActive("/contact") ? "font-bold text-green-600" : ""}`}>
+                <Navbar.Link href="/contact" className={`text-xs custom-navbar-link ${isActive("/contact") ? "font-bold text-green-600" : ""}`}>
                     Contact
                 </Navbar.Link>
             </Navbar.Collapse>
