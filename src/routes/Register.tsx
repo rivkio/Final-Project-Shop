@@ -4,7 +4,6 @@ import patterns from "../validation/patterns";
 import "./Register.scss";
 import { BsEye, BsEyeSlashFill } from "react-icons/bs";
 import { useState } from "react";
-import { registerMock } from "../mocks/register";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import dialogs from "../ui/dialogs";
@@ -18,9 +17,7 @@ const Register = () => {
         register,
         handleSubmit,
         formState: { errors, isValid },
-    } = useForm<IUser>({
-        defaultValues: registerMock,
-    });
+    } = useForm<IUser>();
 
     const { register: registerUser } = useAuth();
     const [showPassword, setShowPassword] = useState(false);
