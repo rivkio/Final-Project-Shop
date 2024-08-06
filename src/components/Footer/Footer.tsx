@@ -5,7 +5,7 @@ function Footer() {
     return (
         <footer className="footer dark:bg-[#374151]">
             <div className="full-footer-content">
-                <span className="text-sm md:p-8 p-4 sm:text-center dark:text-gray-200 text-[#1a6e5a] font-medium">
+                <span className="text-sm md:p-9 p-4 sm:text-center dark:text-gray-200 text-[#1a6e5a] font-medium">
                     2024 All Rights Reserved To Rivki Ozeri ©
                 </span>
                 <ul className="flex flex-wrap items-center text-base font-medium mr-5 text-[#1a6e5a] dark:text-slate-200">
