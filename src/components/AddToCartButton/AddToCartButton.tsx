@@ -67,22 +67,3 @@ const AddToCartButton: FC<AddToCartButtonProps> = ({ productId, variants, produc
 export default AddToCartButton;
 
 
-
-
-// const AddToCartButton: React.FC<{ productId, productName: string, price: number, image: string, size: string, onAdd: () => void; disabled: boolean; }> = ({ productId, productName, price, image, size, onAdd, disabled }) => {
-//     const { fetchCart } = useCart();
-
-
-    // return (
-    //     <button 
-    //     onClick={handleAddToCart} 
-    //         className={`add-to-cart-button ${disabled ? 'disabled' : ''}`}
-    //         disabled={disabled}
-    //         >
-    //         <FiShoppingCart size={24} />
-    //         Add to cart
-    //     </button>
-    // );
-
-
-
