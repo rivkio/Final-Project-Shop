@@ -55,13 +55,6 @@ export const router = createBrowserRouter([
                         <EditProduct />
                     </ProtectedRouteAdmin>
             },
-            // {
-            //     path: "/admin/products", element:
-            //         <ProtectedRouteAdmin>
-            //             <AdminProducts />
-            //         </ProtectedRouteAdmin>
-            // },
-            // { path: "/admin/users", element: <Users /> },
             {
                 path: "/users/:id", element:
                     <ProtectedRouteUser>
@@ -77,15 +70,10 @@ export const router = createBrowserRouter([
             {
                 path: "/orders", element: <UserOrders />
             },
-            // {
-            //     path: "/admin/analytics", element: < SalesPage />
-            // },
-            // { path: "/admin/orders", element: <AdminOrders /> },
             {
                 path: "/admin/dashboard", element: <AdminDashboard />
             },
             { path: "/contact", element: <Contact /> },
-            // { path: "/admin/messages", element: <AdminMessages /> },
             { path: "/about", element: <About /> },
 
 

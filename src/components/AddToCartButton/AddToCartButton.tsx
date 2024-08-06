@@ -13,7 +13,15 @@ const AddToCartButton: FC<AddToCartButtonProps> = ({ productId, variants, produc
             console.log("Adding product to cart:", selectedVariant);
             try {
                 await addToCart(productId, selectedVariant._id, 1, selectedVariant.size, selectedVariant.price);
-                dialogs.success("Product Added", `${productName}Product added to cart`);
+                dialogs.success(
+                    "Product Added",
+                    `<div style="display: flex; align-items: center;">
+                        <img src="${image.url}" alt="${productName}" style="width: 50px; height: 50px; object-fit: cover; margin-right: 10px;" />
+                        <div>
+                            <p>${productName} has been added to your cart.</p>
+                        </div>
+                    </div>`
+                );
             } catch (error) {
                 console.error("Failed to add product to cart:", error);
             }
