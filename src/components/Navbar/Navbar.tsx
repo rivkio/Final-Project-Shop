@@ -1,5 +1,3 @@
-"use client";
-
 import { Avatar, DarkThemeToggle, Dropdown, Navbar, Tooltip } from "flowbite-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FiUser, FiShoppingCart, FiSettings } from "react-icons/fi";
