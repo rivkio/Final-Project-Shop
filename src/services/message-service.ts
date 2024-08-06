@@ -2,7 +2,7 @@ import axios from "axios";
 import { IMessage } from "../@types/productType";
 
 
-const messageUrl = "http://localhost:8080/api/v1/messages";
+const messageUrl = "https://apinodeproject-2.onrender.com/api/v1/messages";
 
 export const sendMessage = (data: IMessage) => {
     const url = `${messageUrl}/send-message`

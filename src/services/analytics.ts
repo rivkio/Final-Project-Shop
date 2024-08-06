@@ -1,7 +1,7 @@
 // salesService.ts
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:8080/api/v1';
+const baseUrl = 'https://apinodeproject-2.onrender.com/api/v1';
 const analyticsUrl = `${baseUrl}/analytics`;
 
 
