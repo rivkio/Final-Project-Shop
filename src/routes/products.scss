@@ -1,9 +1,16 @@
+/* סגנונות כלליים של הדף */
+.product-list-wrapper {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
 .product-list-container {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 1.5rem;
-    padding: 30px;
-    max-width: 90%;
+    padding: 20px;
+    max-width: 100%;
     margin: 0 auto;
 
     @media (min-width: 768px) {

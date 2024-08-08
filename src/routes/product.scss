@@ -15,6 +15,12 @@
     }
 }
 
+@media (max-width: 767px) {
+    .product-page {
+        width: 90%;
+    }
+}
+
 .product-image-container {
     flex: 1;
     display: flex;
@@ -164,8 +170,9 @@
     font-weight: 500;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 767px) {
     .buttons-container {
+        width: 100%;
         flex-direction: row;
     }
 
@@ -198,19 +205,10 @@
     .product-page {
         flex-direction: row;
     }
-
-    // .size-buttons-container {
-    //     flex-direction: row;
-    // }
-
-    // .size-button {
-    //     flex: initial;
-    // }
 }
 
 .size-buttons-container {
     display: flex;
-    flex-wrap: wrap;
     gap: 10px;
     margin-bottom: 10px;
     width: 70%;

@@ -50,7 +50,7 @@ const Products: FC = () => {
 
 
     return (
-        <div>
+        <div className="product-list-wrapper">
             <h1 className='main-title'>Our Products</h1>
 
             <div className="product-list-container">

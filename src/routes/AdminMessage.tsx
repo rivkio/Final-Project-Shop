@@ -43,7 +43,7 @@ const AdminMessages = () => {
 
     return (
         <div className="overflow-x-auto bg-white dark:border-gray-700 dark:bg-gray-800">
-            <h2 className='text-4xl text-gray-800 dark:text-gray-400 mb-12 text-center mt-12'>Leads</h2>
+            <h2 className='text-4xl text-gray-800 dark:text-gray-400 mb-12 text-center mt-12'>Messages</h2>
 
             {loading && <div className="text-center">Loading...</div>}
             {error && <div className="text-red-500 text-center mb-4">{error.message}</div>}

@@ -1,18 +1,15 @@
 import { Tabs } from "flowbite-react";
-import { FiBox, FiUsers, FiClipboard, FiTrendingUp, FiFileText } from "react-icons/fi";
+import { FiBox, FiUsers, FiClipboard, FiTrendingUp, FiMessageCircle } from "react-icons/fi";
 import AdminProducts from "./AdminProducts";
 import Users from "./Users";
 import AdminOrders from "./AdminOrders";
 import SalesChart from "./SalesByDate";
 import './AdminDashboard.scss';
 import AdminMessages from "./AdminMessage";
-import { useEffect } from "react";
+
 
 const AdminDashboard = () => {
 
-    useEffect(() => {
-        document.title = "Admin Dashboard";
-    }, []);
 
     return (
         <Tabs aria-label="Tabs with icons" className="tabs">
@@ -28,7 +25,7 @@ const AdminDashboard = () => {
             <Tabs.Item title="Analytics" icon={FiTrendingUp} className="tabs-item">
                 <SalesChart />
             </Tabs.Item>
-            <Tabs.Item title="Leads" icon={FiFileText} className="tabs-item">
+            <Tabs.Item title="Leads" icon={FiMessageCircle} className="tabs-item">
                 <AdminMessages />
             </Tabs.Item>
         </Tabs>

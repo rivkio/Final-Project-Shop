@@ -13,20 +13,6 @@
     color: #333 !important;
 }
 
-// @media (max-width: 768px) {
-//     .tabs {
-//         align-items: center;
-//         display: flex;
-//         justify-content: center;
-//     }
-
-//     .dark .tabs [role="tab"][aria-selected="true"] {
-//         background-color: #586377 !important;
-//         color: #fff !important;
-//     }
-// }
-
-
 .tabs [role="tab"]:hover {
     background-color: #e0e0e0 !important;
     color: #555 !important;
