@@ -1,5 +1,6 @@
 import { FiAlertCircle, FiHome, FiMail } from 'react-icons/fi';
 import './Footer.scss';
+import { Tooltip } from 'flowbite-react';
 
 function Footer() {
     return (
@@ -9,9 +10,21 @@ function Footer() {
                     2024 All Rights Reserved To Rivki Ozeri ©
                 </span>
                 <ul className="flex flex-wrap items-center text-base font-medium mr-5 text-[#1a6e5a] dark:text-slate-200">
-                    <li><a href="/" className="hover:underline dark:text-gray-200"><FiHome/></a></li>
-                    <li><a href="/about" className="hover:underline dark:text-gray-200"><FiAlertCircle /></a></li>
-                    <li><a href="/contact" className="hover:underline dark:text-gray-200"><FiMail /></a></li>
+                    <li>
+                        <Tooltip content="Home" placement="top" className="text-xs bg-gray-700 rounded px-1 py-1">
+                            <a href="/" className="hover:underline dark:text-gray-200"><FiHome size={20} /></a>
+                        </Tooltip>
+                    </li>
+                    <li>
+                        <Tooltip content="About" placement="top" className="text-xs bg-gray-700 text-white rounded px-1 py-1">
+                            <a href="/about" className="hover:underline dark:text-gray-200"><FiAlertCircle size={20} /></a>
+                        </Tooltip>
+                    </li>
+                    <li>
+                        <Tooltip content="Contact" placement="top" className="text-xs bg-gray-700 text-white rounded px-1 py-1">
+                            <a href="/contact" className="hover:underline dark:text-gray-200"><FiMail size={20} /></a>
+                        </Tooltip>
+                    </li>
                 </ul>
             </div>
             <div className="mobile-footer-content">
@@ -19,9 +32,9 @@ function Footer() {
                     All Rights Reserved ©
                 </span>
                 <ul className="dark:text-[#f0e6f6]">
-                    <li><a href="/" className="hover:underline dark:text-[#f0e6f6]"><FiHome/></a></li>
+                    <li><a href="/" className="hover:underline dark:text-[#f0e6f6]"><FiHome /></a></li>
                     <li><a href="/about" className="hover:underline dark:text-[#f0e6f6]"><FiAlertCircle /></a></li>
-                    <li><a href="/contact" className="hover:underline dark:text-[#f0e6f6]"><FiMail/></a></li>
+                    <li><a href="/contact" className="hover:underline dark:text-[#f0e6f6]"><FiMail /></a></li>
                 </ul>
             </div>
         </footer>
