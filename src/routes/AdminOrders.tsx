@@ -182,9 +182,9 @@ const AdminOrders = () => {
                             ))}
                         </div>
                         <div className="flex justify-between items-center">
-                            <button onClick={(event) => handleCancelOrder(event, order.orderId)} className="text-red-600 hover:text-red-800">
+                            <Link to="#" onClick={(event) => handleCancelOrder(event, order.orderId)} className="text-red-600 hover:text-red-800">
                                 <FiTrash2 size={20} />
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 ))}
